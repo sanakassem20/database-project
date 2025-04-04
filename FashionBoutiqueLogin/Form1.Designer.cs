@@ -76,7 +76,7 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(158, 53);
+            this.txtUsername.Location = new System.Drawing.Point(160, 53);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(200, 22);
