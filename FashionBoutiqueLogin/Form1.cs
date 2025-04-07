@@ -95,6 +95,16 @@ namespace FashionBoutiqueLogin
                 Application.Exit();
              }
         }
+
+        private void lblSystemName_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = !chkShowPassword.Checked;
+        }
+
     }
 }
 

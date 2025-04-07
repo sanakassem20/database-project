@@ -1,4 +1,6 @@
-﻿namespace FashionBoutiqueLogin
+﻿using System.Windows.Forms;
+
+namespace FashionBoutiqueLogin
 {
     partial class Form1
     {
@@ -16,7 +18,9 @@
         private System.Windows.Forms.PictureBox logoPictureBox;
         private System.Windows.Forms.PictureBox usernameIconPictureBox;
         private System.Windows.Forms.PictureBox passwordIconPictureBox;
-            
+        private System.Windows.Forms.CheckBox chkShowPassword;
+
+
 
 
         protected override void Dispose(bool disposing)
@@ -41,6 +45,7 @@
             this.passwordIconPictureBox = new System.Windows.Forms.PictureBox();
             this.backgroundPictureBox = new System.Windows.Forms.PictureBox();
             this.loginPanel = new System.Windows.Forms.Panel();
+            this.chkShowPassword = new System.Windows.Forms.CheckBox();
             this.navigationPanel = new System.Windows.Forms.Panel();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.lblSystemName = new System.Windows.Forms.Label();
@@ -156,6 +161,7 @@
             this.loginPanel.Controls.Add(this.lblPassword);
             this.loginPanel.Controls.Add(this.txtUsername);
             this.loginPanel.Controls.Add(this.txtPassword);
+            this.loginPanel.Controls.Add(this.chkShowPassword);
             this.loginPanel.Controls.Add(this.btnLogin);
             this.loginPanel.Controls.Add(this.lblMessage);
             this.loginPanel.Controls.Add(this.usernameIconPictureBox);
@@ -165,6 +171,18 @@
             this.loginPanel.Size = new System.Drawing.Size(375, 211);
             this.loginPanel.TabIndex = 1;
             this.loginPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.loginPanel_Paint);
+            // 
+            // chkShowPassword
+            // 
+            this.chkShowPassword.AutoSize = true;
+            this.chkShowPassword.Font = new System.Drawing.Font("Arial", 9F);
+            this.chkShowPassword.Location = new System.Drawing.Point(223, 130);
+            this.chkShowPassword.Name = "chkShowPassword";
+            this.chkShowPassword.Size = new System.Drawing.Size(137, 21);
+            this.chkShowPassword.TabIndex = 8;
+            this.chkShowPassword.Text = "Show Password";
+            this.chkShowPassword.UseVisualStyleBackColor = true;
+            this.chkShowPassword.CheckedChanged += new System.EventHandler(this.chkShowPassword_CheckedChanged);
             // 
             // navigationPanel
             // 
@@ -199,6 +217,7 @@
             this.lblSystemName.Size = new System.Drawing.Size(288, 36);
             this.lblSystemName.TabIndex = 1;
             this.lblSystemName.Text = "GLAMVENTORY";
+            this.lblSystemName.Click += new System.EventHandler(this.lblSystemName_Click);
             // 
             // Form1
             // 
