@@ -43,11 +43,11 @@
             this.purchasebtn = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.productpanel = new System.Windows.Forms.Panel();
-            this.productbtn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.employeepanel = new System.Windows.Forms.Panel();
             this.employeebtn = new System.Windows.Forms.Button();
             this.employeeicon = new System.Windows.Forms.PictureBox();
+            this.ProductBtn = new System.Windows.Forms.Button();
             this.navigationPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.backgroundpanel.SuspendLayout();
@@ -214,24 +214,12 @@
             // productpanel
             // 
             this.productpanel.BackColor = System.Drawing.Color.Gainsboro;
-            this.productpanel.Controls.Add(this.productbtn);
+            this.productpanel.Controls.Add(this.ProductBtn);
             this.productpanel.Controls.Add(this.pictureBox1);
             this.productpanel.Location = new System.Drawing.Point(27, 120);
             this.productpanel.Name = "productpanel";
             this.productpanel.Size = new System.Drawing.Size(627, 90);
             this.productpanel.TabIndex = 1;
-            // 
-            // productbtn
-            // 
-            this.productbtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.productbtn.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productbtn.ForeColor = System.Drawing.Color.Black;
-            this.productbtn.Location = new System.Drawing.Point(159, 29);
-            this.productbtn.Name = "productbtn";
-            this.productbtn.Size = new System.Drawing.Size(143, 36);
-            this.productbtn.TabIndex = 1;
-            this.productbtn.Text = "Product";
-            this.productbtn.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -279,6 +267,20 @@
             this.employeeicon.TabIndex = 0;
             this.employeeicon.TabStop = false;
             // 
+            // ProductBtn
+            // 
+            this.ProductBtn.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.ProductBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ProductBtn.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProductBtn.ForeColor = System.Drawing.Color.Black;
+            this.ProductBtn.Location = new System.Drawing.Point(159, 29);
+            this.ProductBtn.Name = "ProductBtn";
+            this.ProductBtn.Size = new System.Drawing.Size(143, 40);
+            this.ProductBtn.TabIndex = 2;
+            this.ProductBtn.Text = "Product";
+            this.ProductBtn.UseVisualStyleBackColor = true;
+            this.ProductBtn.Click += new System.EventHandler(this.ProductBtn_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -317,7 +319,6 @@
         private System.Windows.Forms.Button employeebtn;
         private System.Windows.Forms.PictureBox employeeicon;
         private System.Windows.Forms.Panel productpanel;
-        private System.Windows.Forms.Button productbtn;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel purchasepanel;
         private System.Windows.Forms.Button purchasebtn;
@@ -328,5 +329,6 @@
         private System.Windows.Forms.Panel salepanel;
         private System.Windows.Forms.Button salebtn;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Button ProductBtn;
     }
 }

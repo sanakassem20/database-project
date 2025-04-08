@@ -37,7 +37,7 @@ namespace FashionBoutiqueLogin
                     if (role == "Admin")
                     {
                         this.Hide();
-                        Form1 adminPanel = new Form1();
+                        Main adminPanel = new Main();
                         adminPanel.ShowDialog();
                         this.Show();
                     }

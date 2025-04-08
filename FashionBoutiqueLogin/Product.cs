@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace FashionBoutiqueLogin
@@ -17,14 +16,16 @@ namespace FashionBoutiqueLogin
             con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Mydb"].ToString());
         }
 
-        private void Product_Load(object sender, EventArgs e)
+        private void Product_Load_1(object sender, EventArgs e)
         {
             // Load data into the DataGridView
             LoadProducts();
 
-            // Populate ComboBoxes (if not already populated)
-            CategoryBox.Items.AddRange(new string[] { "Clothing", "Footwear", "Accessories" });
-            BrandBox.Items.AddRange(new string[] { "Nike", "Adidas", "Puma", "Gucci" });
+            // Populate ComboBoxes dynamically from the database
+            LoadCategories();
+            LoadBrands();
+
+            // Populate SizeBox (if not already populated)
             SizeBox.Items.AddRange(new string[] { "S", "M", "L", "XL" });
         }
 
@@ -34,19 +35,14 @@ namespace FashionBoutiqueLogin
             {
                 // Open the connection
                 con.Open();
-
                 // Define the SQL query to fetch all products
                 string query = "SELECT * FROM Product";
-
                 // Create a DataAdapter to execute the query
                 SqlDataAdapter adapter = new SqlDataAdapter(query, con);
-
                 // Create a DataTable to hold the results
                 DataTable dataTable = new DataTable();
-
                 // Fill the DataTable with the query results
                 adapter.Fill(dataTable);
-
                 // Bind the DataTable to the DataGridView
                 dataGridView1.DataSource = dataTable;
             }
@@ -61,189 +57,58 @@ namespace FashionBoutiqueLogin
             }
         }
 
-        private void AddProduct_Click(object sender, EventArgs e)
+        private void LoadCategories()
         {
             try
             {
-                // Get user input
-                string name = Name.Text;
-                string category = CategoryBox.SelectedItem?.ToString();
-                decimal price = decimal.Parse(Price.Text);
-                string brand = BrandBox.SelectedItem?.ToString();
-                string size = SizeBox.SelectedItem?.ToString();
-                int stockQuantity = int.Parse(Quantity.Text);
-
                 // Open the connection
                 con.Open();
-
-                // Define the SQL query to insert a new product
-                string query = "INSERT INTO Product (Name, Category, Price, Brand, Size, StockQuantity) " +
-                               "VALUES (@Name, @Category, @Price, @Brand, @Size, @StockQuantity)";
-
+                // Define the SQL query to fetch unique categories
+                string query = "SELECT DISTINCT Category FROM Product";
                 // Create a SqlCommand to execute the query
                 SqlCommand cmd = new SqlCommand(query, con);
-
-                // Add parameters to prevent SQL injection
-                cmd.Parameters.AddWithValue("@Name", name);
-                cmd.Parameters.AddWithValue("@Category", category);
-                cmd.Parameters.AddWithValue("@Price", price);
-                cmd.Parameters.AddWithValue("@Brand", brand);
-                cmd.Parameters.AddWithValue("@Size", size);
-                cmd.Parameters.AddWithValue("@StockQuantity", stockQuantity);
-
-                // Execute the query
-                cmd.ExecuteNonQuery();
-
-                // Refresh the DataGridView
-                LoadProducts();
-
-                // Clear input fields
-                ClearFields();
-                MessageBox.Show("Product added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error adding product: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                // Close the connection
-                con.Close();
-            }
-        }
-
-        private void UpdateProduct_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // Get the selected product's PID
-                int pid = Convert.ToInt32(ID.Text);
-
-                // Get updated values
-                string name = Name.Text;
-                string category = CategoryBox.SelectedItem?.ToString();
-                decimal price = decimal.Parse(Price.Text);
-                string brand = BrandBox.SelectedItem?.ToString();
-                string size = SizeBox.SelectedItem?.ToString();
-                int stockQuantity = int.Parse(Quantity.Text);
-
-                // Open the connection
-                con.Open();
-
-                // Define the SQL query to update an existing product
-                string query = "UPDATE Product SET Name = @Name, Category = @Category, Price = @Price, " +
-                               "Brand = @Brand, Size = @Size, StockQuantity = @StockQuantity WHERE PID = @PID";
-
-                // Create a SqlCommand to execute the query
-                SqlCommand cmd = new SqlCommand(query, con);
-
-                // Add parameters to prevent SQL injection
-                cmd.Parameters.AddWithValue("@Name", name);
-                cmd.Parameters.AddWithValue("@Category", category);
-                cmd.Parameters.AddWithValue("@Price", price);
-                cmd.Parameters.AddWithValue("@Brand", brand);
-                cmd.Parameters.AddWithValue("@Size", size);
-                cmd.Parameters.AddWithValue("@StockQuantity", stockQuantity);
-                cmd.Parameters.AddWithValue("@PID", pid);
-
-                // Execute the query
-                cmd.ExecuteNonQuery();
-
-                // Refresh the DataGridView
-                LoadProducts();
-
-                MessageBox.Show("Product updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error updating product: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                // Close the connection
-                con.Close();
-            }
-        }
-
-        private void DeleteProduct_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // Get the selected product's PID
-                int pid = Convert.ToInt32(ID.Text);
-
-                // Open the connection
-                con.Open();
-
-                // Define the SQL query to delete a product
-                string query = "DELETE FROM Product WHERE PID = @PID";
-
-                // Create a SqlCommand to execute the query
-                SqlCommand cmd = new SqlCommand(query, con);
-
-                // Add parameters to prevent SQL injection
-                cmd.Parameters.AddWithValue("@PID", pid);
-
-                // Execute the query
-                cmd.ExecuteNonQuery();
-
-                // Refresh the DataGridView
-                LoadProducts();
-
-                MessageBox.Show("Product deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error deleting product: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                // Close the connection
-                con.Close();
-            }
-        }
-
-        private void SearchButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string searchText = SearchText.Text.Trim();
-
-                if (!string.IsNullOrEmpty(searchText))
+                // Execute the query and read the results
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
                 {
-                    // Open the connection
-                    con.Open();
-
-                    // Define the SQL query to search for products
-                    string query = "SELECT * FROM Product WHERE Name LIKE @SearchText OR Category LIKE @SearchText OR Brand LIKE @SearchText";
-
-                    // Create a SqlCommand to execute the query
-                    SqlCommand cmd = new SqlCommand(query, con);
-
-                    // Add parameters to prevent SQL injection
-                    cmd.Parameters.AddWithValue("@SearchText", $"%{searchText}%");
-
-                    // Create a DataAdapter to execute the query
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-
-                    // Create a DataTable to hold the results
-                    DataTable dataTable = new DataTable();
-
-                    // Fill the DataTable with the query results
-                    adapter.Fill(dataTable);
-
-                    // Bind the DataTable to the DataGridView
-                    dataGridView1.DataSource = dataTable;
+                    // Add each category to the ComboBox
+                    CategoryBox.Items.Add(reader["Category"].ToString());
                 }
-                else
-                {
-                    // Reload all products if search text is empty
-                    LoadProducts();
-                }
+                reader.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error searching products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error loading categories: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Close the connection
+                con.Close();
+            }
+        }
+
+        private void LoadBrands()
+        {
+            try
+            {
+                // Open the connection
+                con.Open();
+                // Define the SQL query to fetch unique brands
+                string query = "SELECT DISTINCT Brand FROM Product";
+                // Create a SqlCommand to execute the query
+                SqlCommand cmd = new SqlCommand(query, con);
+                // Execute the query and read the results
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    // Add each brand to the ComboBox
+                    BrandBox.Items.Add(reader["Brand"].ToString());
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading brands: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -278,13 +143,167 @@ namespace FashionBoutiqueLogin
             SizeBox.SelectedIndex = -1;
         }
 
-        // Stub methods for unused event handlers
-        private void backgroundpanel_Paint(object sender, PaintEventArgs e) { }
-        private void textBox1_TextChanged(object sender, EventArgs e) { }
-        private void label1_Click(object sender, EventArgs e) { }
-        private void label4_Click(object sender, EventArgs e) { }
-        private void textBox3_TextChanged(object sender, EventArgs e) { }
-        private void label5_Click(object sender, EventArgs e) { }
-        private void button1_Click(object sender, EventArgs e) { }
+        private void AddProduct_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get user input
+                string name = Name.Text;
+                string category = CategoryBox.SelectedItem?.ToString();
+                decimal price = decimal.Parse(Price.Text);
+                string brand = BrandBox.SelectedItem?.ToString();
+                string size = SizeBox.SelectedItem?.ToString();
+                int stockQuantity = int.Parse(Quantity.Text);
+
+                // Open the connection
+                con.Open();
+                // Define the SQL query to insert a new product
+                string query = "INSERT INTO Product (Name, Category, Price, Brand, Size, StockQuantity) " +
+                               "VALUES (@Name, @Category, @Price, @Brand, @Size, @StockQuantity)";
+                // Create a SqlCommand to execute the query
+                SqlCommand cmd = new SqlCommand(query, con);
+                // Add parameters to prevent SQL injection
+                cmd.Parameters.AddWithValue("@Name", name);
+                cmd.Parameters.AddWithValue("@Category", category);
+                cmd.Parameters.AddWithValue("@Price", price);
+                cmd.Parameters.AddWithValue("@Brand", brand);
+                cmd.Parameters.AddWithValue("@Size", size);
+                cmd.Parameters.AddWithValue("@StockQuantity", stockQuantity);
+                // Execute the query
+                cmd.ExecuteNonQuery();
+                // Refresh the DataGridView
+                LoadProducts();
+                // Clear input fields
+                ClearFields();
+                MessageBox.Show("Product added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error adding product: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Close the connection
+                con.Close();
+            }
+        }
+
+        private void UpdateProduct_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get the selected product's PID
+                int pid = Convert.ToInt32(ID.Text);
+                // Get updated values
+                string name = Name.Text;
+                string category = CategoryBox.SelectedItem?.ToString();
+                decimal price = decimal.Parse(Price.Text);
+                string brand = BrandBox.SelectedItem?.ToString();
+                string size = SizeBox.SelectedItem?.ToString();
+                int stockQuantity = int.Parse(Quantity.Text);
+
+                // Open the connection
+                con.Open();
+                // Define the SQL query to update an existing product
+                string query = "UPDATE Product SET Name = @Name, Category = @Category, Price = @Price, " +
+                               "Brand = @Brand, Size = @Size, StockQuantity = @StockQuantity WHERE PID = @PID";
+                // Create a SqlCommand to execute the query
+                SqlCommand cmd = new SqlCommand(query, con);
+                // Add parameters to prevent SQL injection
+                cmd.Parameters.AddWithValue("@Name", name);
+                cmd.Parameters.AddWithValue("@Category", category);
+                cmd.Parameters.AddWithValue("@Price", price);
+                cmd.Parameters.AddWithValue("@Brand", brand);
+                cmd.Parameters.AddWithValue("@Size", size);
+                cmd.Parameters.AddWithValue("@StockQuantity", stockQuantity);
+                cmd.Parameters.AddWithValue("@PID", pid);
+                // Execute the query
+                cmd.ExecuteNonQuery();
+                // Refresh the DataGridView
+                LoadProducts();
+                MessageBox.Show("Product updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating product: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Close the connection
+                con.Close();
+            }
+        }
+
+        private void DeleteProduct_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get the selected product's PID
+                int pid = Convert.ToInt32(ID.Text);
+                // Open the connection
+                con.Open();
+                // Define the SQL query to delete a product
+                string query = "DELETE FROM Product WHERE PID = @PID";
+                // Create a SqlCommand to execute the query
+                SqlCommand cmd = new SqlCommand(query, con);
+                // Add parameters to prevent SQL injection
+                cmd.Parameters.AddWithValue("@PID", pid);
+                // Execute the query
+                cmd.ExecuteNonQuery();
+                // Refresh the DataGridView
+                LoadProducts();
+                MessageBox.Show("Product deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error deleting product: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Close the connection
+                con.Close();
+            }
+        }
+
+        private void SearchButton_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                string searchText = SearchText.Text.Trim();
+                if (!string.IsNullOrEmpty(searchText))
+                {
+                    // Open the connection
+                    con.Open();
+                    // Define the SQL query to search for products
+                    string query = "SELECT * FROM Product WHERE Name LIKE @SearchText OR Category LIKE @SearchText OR Brand LIKE @SearchText";
+                    // Create a SqlCommand to execute the query
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    // Add parameters to prevent SQL injection
+                    cmd.Parameters.AddWithValue("@SearchText", $"%{searchText}%");
+                    // Create a DataAdapter to execute the query
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    // Create a DataTable to hold the results
+                    DataTable dataTable = new DataTable();
+                    // Fill the DataTable with the query results
+                    adapter.Fill(dataTable);
+                    // Bind the DataTable to the DataGridView
+                    dataGridView1.DataSource = dataTable;
+                }
+                else
+                {
+                    // Reload all products if search text is empty
+                    LoadProducts();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error searching products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Close the connection
+                con.Close();
+            }
+        }
     }
 }

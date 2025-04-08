@@ -38,12 +38,21 @@ namespace FashionBoutiqueLogin
         }
         private void EmployeeBtn_Click(object sender, EventArgs e)
         {
+
             
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void ProductBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Product product = new Product();
+            product.ShowDialog();
+            this.Show();
         }
     }
 }
