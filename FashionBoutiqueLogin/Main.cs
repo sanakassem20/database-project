@@ -54,5 +54,18 @@ namespace FashionBoutiqueLogin
             product.ShowDialog();
             this.Show();
         }
+
+        private void purchasebtn_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void feedbackbtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Feedback feedback = new Feedback();
+            feedback.ShowDialog();
+            this.Show();
+        }
     }
 }

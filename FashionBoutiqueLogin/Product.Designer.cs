@@ -33,6 +33,7 @@
             this.navigationPanel = new System.Windows.Forms.Panel();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.backgroundpanel = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
             this.SizeBox = new System.Windows.Forms.TextBox();
             this.DeleteProduct = new System.Windows.Forms.Button();
             this.UpdateProduct = new System.Windows.Forms.Button();
@@ -52,7 +53,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ID = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label8 = new System.Windows.Forms.Label();
             this.navigationPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.backgroundpanel.SuspendLayout();
@@ -119,6 +119,17 @@
             this.backgroundpanel.Name = "backgroundpanel";
             this.backgroundpanel.Size = new System.Drawing.Size(800, 523);
             this.backgroundpanel.TabIndex = 3;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(239, 31);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(50, 16);
+            this.label8.TabIndex = 25;
+            this.label8.Text = "Search";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // SizeBox
             // 
@@ -294,17 +305,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(776, 286);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(239, 31);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(50, 16);
-            this.label8.TabIndex = 25;
-            this.label8.Text = "Search";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Product
             // 
@@ -313,7 +314,7 @@
             this.ClientSize = new System.Drawing.Size(800, 624);
             this.Controls.Add(this.backgroundpanel);
             this.Controls.Add(this.navigationPanel);
-            this.Name = "Product";
+            //this.Name = "Product";
             this.Text = "Product";
             this.Load += new System.EventHandler(this.Product_Load_1);
             this.navigationPanel.ResumeLayout(false);
