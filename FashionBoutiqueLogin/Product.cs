@@ -330,5 +330,10 @@ namespace FashionBoutiqueLogin
                 MessageBox.Show($"Error searching products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

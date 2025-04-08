@@ -33,9 +33,9 @@
             this.navigationPanel = new System.Windows.Forms.Panel();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.backgroundpanel = new System.Windows.Forms.Panel();
+            this.SizeBox = new System.Windows.Forms.TextBox();
             this.DeleteProduct = new System.Windows.Forms.Button();
             this.UpdateProduct = new System.Windows.Forms.Button();
-            this.SearchButton = new System.Windows.Forms.Button();
             this.SearchText = new System.Windows.Forms.TextBox();
             this.AddProduct = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -52,7 +52,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ID = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.SizeBox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.navigationPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.backgroundpanel.SuspendLayout();
@@ -94,10 +94,10 @@
             // backgroundpanel
             // 
             this.backgroundpanel.BackColor = System.Drawing.Color.DarkGray;
+            this.backgroundpanel.Controls.Add(this.label8);
             this.backgroundpanel.Controls.Add(this.SizeBox);
             this.backgroundpanel.Controls.Add(this.DeleteProduct);
             this.backgroundpanel.Controls.Add(this.UpdateProduct);
-            this.backgroundpanel.Controls.Add(this.SearchButton);
             this.backgroundpanel.Controls.Add(this.SearchText);
             this.backgroundpanel.Controls.Add(this.AddProduct);
             this.backgroundpanel.Controls.Add(this.label7);
@@ -119,6 +119,13 @@
             this.backgroundpanel.Name = "backgroundpanel";
             this.backgroundpanel.Size = new System.Drawing.Size(800, 523);
             this.backgroundpanel.TabIndex = 3;
+            // 
+            // SizeBox
+            // 
+            this.SizeBox.Location = new System.Drawing.Point(329, 471);
+            this.SizeBox.Name = "SizeBox";
+            this.SizeBox.Size = new System.Drawing.Size(129, 22);
+            this.SizeBox.TabIndex = 24;
             // 
             // DeleteProduct
             // 
@@ -144,21 +151,9 @@
             this.UpdateProduct.UseVisualStyleBackColor = false;
             this.UpdateProduct.Click += new System.EventHandler(this.UpdateProduct_Click_1);
             // 
-            // SearchButton
-            // 
-            this.SearchButton.BackColor = System.Drawing.Color.Transparent;
-            this.SearchButton.ForeColor = System.Drawing.Color.Black;
-            this.SearchButton.Location = new System.Drawing.Point(575, 29);
-            this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(75, 23);
-            this.SearchButton.TabIndex = 21;
-            this.SearchButton.Text = "Search";
-            this.SearchButton.UseVisualStyleBackColor = false;
-            //this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click_1);
-            // 
             // SearchText
             // 
-            this.SearchText.Location = new System.Drawing.Point(218, 30);
+            this.SearchText.Location = new System.Drawing.Point(307, 28);
             this.SearchText.Name = "SearchText";
             this.SearchText.Size = new System.Drawing.Size(343, 22);
             this.SearchText.TabIndex = 19;
@@ -300,12 +295,16 @@
             this.dataGridView1.Size = new System.Drawing.Size(776, 286);
             this.dataGridView1.TabIndex = 0;
             // 
-            // SizeBox
+            // label8
             // 
-            this.SizeBox.Location = new System.Drawing.Point(329, 471);
-            this.SizeBox.Name = "SizeBox";
-            this.SizeBox.Size = new System.Drawing.Size(129, 22);
-            this.SizeBox.TabIndex = 24;
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(239, 31);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(50, 16);
+            this.label8.TabIndex = 25;
+            this.label8.Text = "Search";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // Product
             // 
@@ -314,7 +313,7 @@
             this.ClientSize = new System.Drawing.Size(800, 624);
             this.Controls.Add(this.backgroundpanel);
             this.Controls.Add(this.navigationPanel);
-            //this.Name = "Product";
+            this.Name = "Product";
             this.Text = "Product";
             this.Load += new System.EventHandler(this.Product_Load_1);
             this.navigationPanel.ResumeLayout(false);
@@ -349,9 +348,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button AddProduct;
         private System.Windows.Forms.TextBox SearchText;
-        private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.Button DeleteProduct;
         private System.Windows.Forms.Button UpdateProduct;
         private System.Windows.Forms.TextBox SizeBox;
+        private System.Windows.Forms.Label label8;
     }
 }
