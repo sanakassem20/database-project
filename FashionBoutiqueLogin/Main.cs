@@ -57,7 +57,10 @@ namespace FashionBoutiqueLogin
 
         private void purchasebtn_Click(object sender, EventArgs e)
         {
-           
+            this.Hide();
+            Purchase purchase = new Purchase();
+            purchase.ShowDialog();
+            this.Show();
         }
 
         private void feedbackbtn_Click(object sender, EventArgs e)
