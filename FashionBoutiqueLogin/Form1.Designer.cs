@@ -166,9 +166,9 @@ namespace FashionBoutiqueLogin
             this.loginPanel.Controls.Add(this.lblMessage);
             this.loginPanel.Controls.Add(this.usernameIconPictureBox);
             this.loginPanel.Controls.Add(this.passwordIconPictureBox);
-            this.loginPanel.Location = new System.Drawing.Point(262, 293);
+            this.loginPanel.Location = new System.Drawing.Point(225, 324);
             this.loginPanel.Name = "loginPanel";
-            this.loginPanel.Size = new System.Drawing.Size(375, 211);
+            this.loginPanel.Size = new System.Drawing.Size(398, 211);
             this.loginPanel.TabIndex = 1;
             this.loginPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.loginPanel_Paint);
             // 

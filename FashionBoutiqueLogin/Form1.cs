@@ -19,23 +19,32 @@ namespace FashionBoutiqueLogin
 
             try
             {
-                // Open connection to the database
                 con.Open();
-
-                // Query to check if the username and password match
-                string query = "SELECT COUNT(*) FROM Employee WHERE Username = @Username AND Password = @Password";
+                string query = "SELECT Role, FirstName FROM Employee WHERE Username = @Username AND Password = @Password";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@Username", username);
                 cmd.Parameters.AddWithValue("@Password", password);
 
-                // Execute the query
-                int result = (int)cmd.ExecuteScalar();
-
-                // Check if a user was found
-                if (result > 0)
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
                 {
+                    string role = reader["Role"].ToString();
+                    string firstName = reader["FirstName"].ToString();
+
                     lblMessage.ForeColor = System.Drawing.Color.Green;
-                    lblMessage.Text = "Login Successful!";
+                    lblMessage.Text = $"Welcome {firstName}!";
+
+                    if (role == "Admin")
+                    {
+                        this.Hide();
+                        AdminPanelForm adminPanel = new AdminPanelForm();
+                        adminPanel.ShowDialog();
+                        this.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("You are not an admin. Access denied to admin panel.");
+                    }
                 }
                 else
                 {
@@ -45,19 +54,18 @@ namespace FashionBoutiqueLogin
             }
             catch (Exception ex)
             {
-                // Handle any errors
                 lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = "Error: " + ex.Message;
             }
             finally
             {
-                // Close the connection
                 if (con.State == System.Data.ConnectionState.Open)
                 {
                     con.Close();
                 }
             }
         }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
