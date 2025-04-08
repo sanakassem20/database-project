@@ -37,7 +37,7 @@ namespace FashionBoutiqueLogin
                     if (role == "Admin")
                     {
                         this.Hide();
-                        AdminPanelForm adminPanel = new AdminPanelForm();
+                        Form1 adminPanel = new Form1();
                         adminPanel.ShowDialog();
                         this.Show();
                     }
@@ -113,6 +113,10 @@ namespace FashionBoutiqueLogin
             txtPassword.UseSystemPasswordChar = !chkShowPassword.Checked;
         }
 
+        private void Form1_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

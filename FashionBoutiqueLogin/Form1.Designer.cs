@@ -229,6 +229,7 @@ namespace FashionBoutiqueLogin
             this.Controls.Add(this.backgroundPictureBox);
             this.Name = "Form1";
             this.Text = "Login Page";
+            this.Load += new System.EventHandler(this.Form1_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.usernameIconPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwordIconPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPictureBox)).EndInit();
