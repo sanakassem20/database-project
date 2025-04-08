@@ -40,7 +40,6 @@
             this.AddProduct = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.Quantity = new System.Windows.Forms.TextBox();
-            this.SizeBox = new System.Windows.Forms.ComboBox();
             this.BrandBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -53,6 +52,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ID = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.SizeBox = new System.Windows.Forms.TextBox();
             this.navigationPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.backgroundpanel.SuspendLayout();
@@ -94,6 +94,7 @@
             // backgroundpanel
             // 
             this.backgroundpanel.BackColor = System.Drawing.Color.DarkGray;
+            this.backgroundpanel.Controls.Add(this.SizeBox);
             this.backgroundpanel.Controls.Add(this.DeleteProduct);
             this.backgroundpanel.Controls.Add(this.UpdateProduct);
             this.backgroundpanel.Controls.Add(this.SearchButton);
@@ -101,7 +102,6 @@
             this.backgroundpanel.Controls.Add(this.AddProduct);
             this.backgroundpanel.Controls.Add(this.label7);
             this.backgroundpanel.Controls.Add(this.Quantity);
-            this.backgroundpanel.Controls.Add(this.SizeBox);
             this.backgroundpanel.Controls.Add(this.BrandBox);
             this.backgroundpanel.Controls.Add(this.label6);
             this.backgroundpanel.Controls.Add(this.label5);
@@ -154,7 +154,7 @@
             this.SearchButton.TabIndex = 21;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = false;
-            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click_1);
+            //this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click_1);
             // 
             // SearchText
             // 
@@ -191,14 +191,6 @@
             this.Quantity.Name = "Quantity";
             this.Quantity.Size = new System.Drawing.Size(129, 22);
             this.Quantity.TabIndex = 16;
-            // 
-            // SizeBox
-            // 
-            this.SizeBox.FormattingEnabled = true;
-            this.SizeBox.Location = new System.Drawing.Point(329, 471);
-            this.SizeBox.Name = "SizeBox";
-            this.SizeBox.Size = new System.Drawing.Size(129, 24);
-            this.SizeBox.TabIndex = 15;
             // 
             // BrandBox
             // 
@@ -307,7 +299,13 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(776, 286);
             this.dataGridView1.TabIndex = 0;
-            //this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // SizeBox
+            // 
+            this.SizeBox.Location = new System.Drawing.Point(329, 471);
+            this.SizeBox.Name = "SizeBox";
+            this.SizeBox.Size = new System.Drawing.Size(129, 22);
+            this.SizeBox.TabIndex = 24;
             // 
             // Product
             // 
@@ -347,7 +345,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox BrandBox;
-        private System.Windows.Forms.ComboBox SizeBox;
         private System.Windows.Forms.TextBox Quantity;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button AddProduct;
@@ -355,5 +352,6 @@
         private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.Button DeleteProduct;
         private System.Windows.Forms.Button UpdateProduct;
+        private System.Windows.Forms.TextBox SizeBox;
     }
 }
