@@ -6,7 +6,9 @@ namespace FashionBoutiqueLogin
 {
     public partial class Form1 : Form
     {
+        // Connection string
         SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Mydb"].ToString());
+
         public Form1()
         {
             InitializeComponent();
@@ -20,7 +22,7 @@ namespace FashionBoutiqueLogin
             try
             {
                 con.Open();
-                string query = "SELECT Role, FirstName FROM Employee WHERE Username = @Username AND Password = @Password";
+                string query = "SELECT Role, FirstName, SSN FROM Employee WHERE Username = @Username AND Password = @Password";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@Username", username);
                 cmd.Parameters.AddWithValue("@Password", password);
@@ -30,6 +32,7 @@ namespace FashionBoutiqueLogin
                 {
                     string role = reader["Role"].ToString();
                     string firstName = reader["FirstName"].ToString();
+                    string ssn = reader["SSN"].ToString(); // Retrieve the SSN
 
                     lblMessage.ForeColor = System.Drawing.Color.Green;
                     lblMessage.Text = $"Welcome {firstName}!";
@@ -37,7 +40,9 @@ namespace FashionBoutiqueLogin
                     if (role == "Admin")
                     {
                         this.Hide();
-                        Main adminPanel = new Main();
+
+                        // Pass the SSN to the Main form
+                        Main adminPanel = new Main(ssn);
                         adminPanel.ShowDialog();
                         this.Show();
                     }
@@ -66,57 +71,17 @@ namespace FashionBoutiqueLogin
             }
         }
 
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void backgroundPictureBox_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void navigationPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void backgroundPictureBox_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void loginPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void logoPictureBox_Click(object sender, EventArgs e)
-        {
-
-        }
         private void picxbox_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Exit Application", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)==DialogResult.Yes)
+            if (MessageBox.Show("Exit Application", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Application.Exit();
-             }
+            }
         }
 
-        private void lblSystemName_Click(object sender, EventArgs e)
-        {
-
-        }
         private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
         {
             txtPassword.UseSystemPasswordChar = !chkShowPassword.Checked;
         }
-
-        private void Form1_Load_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }
-

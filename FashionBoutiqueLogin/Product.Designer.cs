@@ -129,7 +129,7 @@
             this.label8.Size = new System.Drawing.Size(50, 16);
             this.label8.TabIndex = 25;
             this.label8.Text = "Search";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
+            // this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // SizeBox
             // 
@@ -168,6 +168,7 @@
             this.SearchText.Name = "SearchText";
             this.SearchText.Size = new System.Drawing.Size(343, 22);
             this.SearchText.TabIndex = 19;
+            this.SearchText.TextChanged += new System.EventHandler(this.SearchText_TextChanged_1);
             // 
             // AddProduct
             // 
@@ -305,7 +306,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(776, 286);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Product
             // 
@@ -314,7 +315,7 @@
             this.ClientSize = new System.Drawing.Size(800, 624);
             this.Controls.Add(this.backgroundpanel);
             this.Controls.Add(this.navigationPanel);
-            //this.Name = "Product";
+            // this.Name = "Product";
             this.Text = "Product";
             this.Load += new System.EventHandler(this.Product_Load_1);
             this.navigationPanel.ResumeLayout(false);

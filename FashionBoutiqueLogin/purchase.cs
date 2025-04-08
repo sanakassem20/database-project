@@ -15,7 +15,7 @@ namespace FashionBoutiqueLogin
             con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Mydb"].ToString());
         }
 
-        private void Purchase_Load(object sender, EventArgs e)
+        private void Purchase_Load_1(object sender, EventArgs e)
         {
             LoadProductNames();
         }

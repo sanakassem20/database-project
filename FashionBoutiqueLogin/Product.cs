@@ -25,7 +25,7 @@ namespace FashionBoutiqueLogin
             LoadBrands();
 
             // Attach the TextChanged event to the SearchText textbox
-            SearchText.TextChanged += SearchText_TextChanged;
+            SearchText.TextChanged += SearchText_TextChanged_1;
         }
 
         private void LoadProducts()
@@ -296,7 +296,7 @@ namespace FashionBoutiqueLogin
             }
         }
 
-        private void SearchText_TextChanged(object sender, EventArgs e)
+        private void SearchText_TextChanged_1(object sender, EventArgs e)
         {
             try
             {
@@ -329,16 +329,6 @@ namespace FashionBoutiqueLogin
             {
                 MessageBox.Show($"Error searching products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

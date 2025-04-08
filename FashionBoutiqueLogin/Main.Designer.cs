@@ -73,7 +73,6 @@
             this.navigationPanel.Name = "navigationPanel";
             this.navigationPanel.Size = new System.Drawing.Size(800, 95);
             this.navigationPanel.TabIndex = 1;
-            this.navigationPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.navigationPanel_Paint);
             // 
             // logoPictureBox
             // 
@@ -109,7 +108,6 @@
             this.backgroundpanel.Name = "backgroundpanel";
             this.backgroundpanel.Size = new System.Drawing.Size(800, 563);
             this.backgroundpanel.TabIndex = 2;
-            this.backgroundpanel.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
             // 
             // feedbackpanel
             // 
@@ -187,7 +185,6 @@
             this.purchasepanel.Name = "purchasepanel";
             this.purchasepanel.Size = new System.Drawing.Size(627, 90);
             this.purchasepanel.TabIndex = 2;
-            this.purchasepanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
             // 
             // purchasebtn
             // 
@@ -270,7 +267,6 @@
             this.employeebtn.TabIndex = 1;
             this.employeebtn.Text = "Employee";
             this.employeebtn.UseVisualStyleBackColor = true;
-            this.employeebtn.Click += new System.EventHandler(this.button1_Click);
             // 
             // employeeicon
             // 
@@ -292,7 +288,6 @@
             this.Controls.Add(this.navigationPanel);
             this.Name = "Main";
             this.Text = "Form3";
-            this.Load += new System.EventHandler(this.Main_Load);
             this.navigationPanel.ResumeLayout(false);
             this.navigationPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
