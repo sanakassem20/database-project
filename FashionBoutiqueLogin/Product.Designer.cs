@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Product));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblSystemName = new System.Windows.Forms.Label();
             this.navigationPanel = new System.Windows.Forms.Panel();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
@@ -129,7 +130,6 @@
             this.label8.Size = new System.Drawing.Size(50, 16);
             this.label8.TabIndex = 25;
             this.label8.Text = "Search";
-            // this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // SizeBox
             // 
@@ -300,13 +300,20 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Location = new System.Drawing.Point(12, 84);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(776, 286);
             this.dataGridView1.TabIndex = 0;
-            // this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Product
             // 
@@ -315,7 +322,7 @@
             this.ClientSize = new System.Drawing.Size(800, 624);
             this.Controls.Add(this.backgroundpanel);
             this.Controls.Add(this.navigationPanel);
-            // this.Name = "Product";
+            this.Name = "Product";
             this.Text = "Product";
             this.Load += new System.EventHandler(this.Product_Load_1);
             this.navigationPanel.ResumeLayout(false);
