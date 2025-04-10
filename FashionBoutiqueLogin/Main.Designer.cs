@@ -197,7 +197,6 @@
             this.purchasebtn.TabIndex = 1;
             this.purchasebtn.Text = "Purchase";
             this.purchasebtn.UseVisualStyleBackColor = true;
-            this.purchasebtn.Click += new System.EventHandler(this.purchasebtn_Click);
             // 
             // pictureBox2
             // 
@@ -267,6 +266,7 @@
             this.employeebtn.TabIndex = 1;
             this.employeebtn.Text = "Employee";
             this.employeebtn.UseVisualStyleBackColor = true;
+            this.employeebtn.Click += new System.EventHandler(this.employeebtn_Click_1);
             // 
             // employeeicon
             // 

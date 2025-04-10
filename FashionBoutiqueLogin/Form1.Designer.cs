@@ -62,10 +62,9 @@ namespace FashionBoutiqueLogin
             this.lblUsername.AutoSize = true;
             this.lblUsername.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.lblUsername.ForeColor = System.Drawing.Color.Black;
-            this.lblUsername.Location = new System.Drawing.Point(62, 53);
+            this.lblUsername.Location = new System.Drawing.Point(59, 53);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(88, 19);
-            this.lblUsername.TabIndex = 0;
             this.lblUsername.Text = "Username";
             // 
             // lblPassword
@@ -73,27 +72,23 @@ namespace FashionBoutiqueLogin
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.lblPassword.ForeColor = System.Drawing.Color.Black;
-            this.lblPassword.Location = new System.Drawing.Point(63, 103);
+            this.lblPassword.Location = new System.Drawing.Point(59, 101);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(87, 19);
-            this.lblPassword.TabIndex = 1;
+            this.lblPassword.Size = new System.Drawing.Size(88, 19);
             this.lblPassword.Text = "Password";
             // 
             // txtUsername
             // 
             this.txtUsername.Location = new System.Drawing.Point(160, 53);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(200, 22);
-            this.txtUsername.TabIndex = 2;
-            this.txtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(160, 100);
+            this.txtPassword.Location = new System.Drawing.Point(160, 98);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(200, 22);
-            this.txtPassword.TabIndex = 3;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // btnLogin
@@ -121,7 +116,7 @@ namespace FashionBoutiqueLogin
             // usernameIconPictureBox
             // 
             this.usernameIconPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("usernameIconPictureBox.Image")));
-            this.usernameIconPictureBox.Location = new System.Drawing.Point(40, 50);
+            this.usernameIconPictureBox.Location = new System.Drawing.Point(28, 50);
             this.usernameIconPictureBox.Name = "usernameIconPictureBox";
             this.usernameIconPictureBox.Size = new System.Drawing.Size(25, 22);
             this.usernameIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -131,7 +126,7 @@ namespace FashionBoutiqueLogin
             // passwordIconPictureBox
             // 
             this.passwordIconPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("passwordIconPictureBox.Image")));
-            this.passwordIconPictureBox.Location = new System.Drawing.Point(40, 97);
+            this.passwordIconPictureBox.Location = new System.Drawing.Point(28, 95);
             this.passwordIconPictureBox.Name = "passwordIconPictureBox";
             this.passwordIconPictureBox.Size = new System.Drawing.Size(25, 25);
             this.passwordIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -237,6 +232,5 @@ namespace FashionBoutiqueLogin
             this.ResumeLayout(false);
 
         }
-
     }
 }

@@ -12,6 +12,7 @@ namespace FashionBoutiqueLogin
         public Form1()
         {
             InitializeComponent();
+
         }
 
         private void BtnLogin_Click(object sender, EventArgs e)
@@ -41,20 +42,17 @@ namespace FashionBoutiqueLogin
                     {
                         this.Hide();
 
-                        // Pass the SSN to the Main form
-                        Main adminPanel = new Main(ssn);
-                        adminPanel.ShowDialog();
-                        this.Show();
+                        // Pass both SSN and Role to the Main form
+                        Main mainForm = new Main(ssn, role);
+                        this.Hide();  // Hide the login form
+                        mainForm.ShowDialog();  // Open the main form
+                        this.Show();  // Show the login form again after closing main form
                     }
                     else
                     {
-                        MessageBox.Show("You are not an admin. Access denied to admin panel.");
+                        lblMessage.ForeColor = System.Drawing.Color.Red;
+                        lblMessage.Text = "Invalid Username or Password!";
                     }
-                }
-                else
-                {
-                    lblMessage.ForeColor = System.Drawing.Color.Red;
-                    lblMessage.Text = "Invalid Username or Password!";
                 }
             }
             catch (Exception ex)
