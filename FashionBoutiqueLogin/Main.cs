@@ -34,7 +34,7 @@ namespace FashionBoutiqueLogin
         private void purchasebtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Purchase purchase = new Purchase();
+            purchase purchase = new purchase();
             purchase.ShowDialog();
             this.Show();
         }
