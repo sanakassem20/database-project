@@ -148,7 +148,7 @@ namespace FashionBoutiqueLogin
             this.backgroundPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.backgroundPictureBox.TabIndex = 2;
             this.backgroundPictureBox.TabStop = false;
-            this.backgroundPictureBox.Click += new System.EventHandler(this.backgroundPictureBox_Click_1);
+            // this.backgroundPictureBox.Click += new System.EventHandler(this.backgroundPictureBox_Click_1);
             // 
             // loginPanel
             // 
@@ -166,11 +166,11 @@ namespace FashionBoutiqueLogin
             this.loginPanel.Controls.Add(this.lblMessage);
             this.loginPanel.Controls.Add(this.usernameIconPictureBox);
             this.loginPanel.Controls.Add(this.passwordIconPictureBox);
-            this.loginPanel.Location = new System.Drawing.Point(262, 293);
+            this.loginPanel.Location = new System.Drawing.Point(225, 324);
             this.loginPanel.Name = "loginPanel";
-            this.loginPanel.Size = new System.Drawing.Size(375, 211);
+            this.loginPanel.Size = new System.Drawing.Size(398, 211);
             this.loginPanel.TabIndex = 1;
-            this.loginPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.loginPanel_Paint);
+            // this.loginPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.loginPanel_Paint);
             // 
             // chkShowPassword
             // 
@@ -194,7 +194,7 @@ namespace FashionBoutiqueLogin
             this.navigationPanel.Name = "navigationPanel";
             this.navigationPanel.Size = new System.Drawing.Size(838, 95);
             this.navigationPanel.TabIndex = 0;
-            this.navigationPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.navigationPanel_Paint);
+            // this.navigationPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.navigationPanel_Paint);
             // 
             // logoPictureBox
             // 
@@ -206,7 +206,7 @@ namespace FashionBoutiqueLogin
             this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.logoPictureBox.TabIndex = 0;
             this.logoPictureBox.TabStop = false;
-            this.logoPictureBox.Click += new System.EventHandler(this.logoPictureBox_Click);
+            // this.logoPictureBox.Click += new System.EventHandler(this.logoPictureBox_Click);
             // 
             // lblSystemName
             // 
@@ -217,7 +217,7 @@ namespace FashionBoutiqueLogin
             this.lblSystemName.Size = new System.Drawing.Size(288, 36);
             this.lblSystemName.TabIndex = 1;
             this.lblSystemName.Text = "GLAMVENTORY";
-            this.lblSystemName.Click += new System.EventHandler(this.lblSystemName_Click);
+            // this.lblSystemName.Click += new System.EventHandler(this.lblSystemName_Click);
             // 
             // Form1
             // 
@@ -229,6 +229,7 @@ namespace FashionBoutiqueLogin
             this.Controls.Add(this.backgroundPictureBox);
             this.Name = "Form1";
             this.Text = "Login Page";
+            // this.Load += new System.EventHandler(this.Form1_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.usernameIconPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwordIconPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPictureBox)).EndInit();
