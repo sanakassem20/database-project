@@ -14,12 +14,16 @@ namespace FashionBoutiqueLogin
             InitializeComponent();
             // Initialize the connection string from the configuration file
             connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["Mydb"].ToString();
+
+            // Attach the Price_KeyPress event to restrict input
+            Price.KeyPress += Price_KeyPress;
         }
 
         private void Product_Load_1(object sender, EventArgs e)
         {
             // Load data into the DataGridView
             LoadProducts();
+
             // Populate ComboBoxes dynamically from the database
             LoadCategories();
             LoadBrands();
@@ -107,13 +111,13 @@ namespace FashionBoutiqueLogin
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 var selectedRow = dataGridView1.SelectedRows[0];
-                ID.Text = selectedRow.Cells["PID"].Value.ToString();
+                ID.Text = selectedRow.Cells["PID"].Value.ToString(); // Populate ID textbox
                 Name.Text = selectedRow.Cells["Name"].Value.ToString();
                 CategoryBox.SelectedItem = selectedRow.Cells["Category"].Value.ToString();
                 Price.Text = selectedRow.Cells["Price"].Value.ToString();
                 BrandBox.SelectedItem = selectedRow.Cells["Brand"].Value.ToString();
                 SizeBox.Text = selectedRow.Cells["Size"].Value.ToString();
-                Quantity.Text = selectedRow.Cells["StockQuantity"].Value.ToString();
+                Quantity.Value = Convert.ToDecimal(selectedRow.Cells["StockQuantity"].Value);
             }
         }
 
@@ -122,23 +126,60 @@ namespace FashionBoutiqueLogin
             ID.Clear();
             Name.Clear();
             Price.Clear();
-            Quantity.Clear();
             CategoryBox.SelectedIndex = -1;
             BrandBox.SelectedIndex = -1;
             SizeBox.Clear();
+            SearchText.Clear();
+            Quantity.Value = 0;
+        }
+
+        private int GetPidForOperation()
+        {
+            // Check if a row is selected
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                return Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["PID"].Value);
+            }
+
+            // Check if the ID field is filled
+            if (!string.IsNullOrEmpty(ID.Text) && int.TryParse(ID.Text, out int pid))
+            {
+                return pid;
+            }
+
+            // If neither condition is met, return -1 to indicate an error
+            return -1;
         }
 
         private void AddProduct_Click_1(object sender, EventArgs e)
         {
             try
             {
+                // Validate that all fields (except ID) are filled
+                if (string.IsNullOrEmpty(Name.Text) ||
+                    CategoryBox.SelectedIndex == -1 ||
+                    string.IsNullOrEmpty(Price.Text) ||
+                    BrandBox.SelectedIndex == -1 ||
+                    string.IsNullOrEmpty(SizeBox.Text) ||
+                    Quantity.Value == 0)
+                {
+                    MessageBox.Show("All fields must be filled except for ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Validate Price
+                if (!double.TryParse(Price.Text, out double price))
+                {
+                    MessageBox.Show("Please enter a valid price (numeric value).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 // Get user input
                 string name = Name.Text;
                 string category = CategoryBox.SelectedItem?.ToString();
-                decimal price = decimal.Parse(Price.Text);
                 string brand = BrandBox.SelectedItem?.ToString();
                 string size = SizeBox.Text;
-                int stockQuantity = int.Parse(Quantity.Text);
+                int stockQuantity = (int)Quantity.Value;
 
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
@@ -171,18 +212,17 @@ namespace FashionBoutiqueLogin
         {
             try
             {
-                // Validate PID
-                if (string.IsNullOrEmpty(ID.Text))
+                // Get the PID for the operation
+                int pid = GetPidForOperation();
+                if (pid == -1)
                 {
-                    MessageBox.Show("Please enter a valid PID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Please select a row or fill the ID field to update a product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                int pid = Convert.ToInt32(ID.Text);
-
                 // Variables to hold current product details
                 string currentName = null, currentCategory = null, currentBrand = null, currentSize = null;
-                decimal currentPrice = 0;
+                double currentPrice = 0;
                 int currentStockQuantity = 0;
 
                 // Step 1: Retrieve the current product details
@@ -204,7 +244,7 @@ namespace FashionBoutiqueLogin
                             // Retrieve current values
                             currentName = reader["Name"].ToString();
                             currentCategory = reader["Category"].ToString();
-                            currentPrice = Convert.ToDecimal(reader["Price"]);
+                            currentPrice = Convert.ToDouble(reader["Price"]);
                             currentBrand = reader["Brand"].ToString();
                             currentSize = reader["Size"].ToString();
                             currentStockQuantity = Convert.ToInt32(reader["StockQuantity"]);
@@ -215,10 +255,17 @@ namespace FashionBoutiqueLogin
                 // Step 2: Use existing values if fields are empty
                 string name = !string.IsNullOrEmpty(Name.Text) ? Name.Text : currentName;
                 string category = CategoryBox.SelectedItem != null ? CategoryBox.SelectedItem.ToString() : currentCategory;
-                decimal price = !string.IsNullOrEmpty(Price.Text) ? decimal.Parse(Price.Text) : currentPrice;
                 string brand = BrandBox.SelectedItem != null ? BrandBox.SelectedItem.ToString() : currentBrand;
                 string size = !string.IsNullOrEmpty(SizeBox.Text) ? SizeBox.Text : currentSize;
-                int stockQuantity = !string.IsNullOrEmpty(Quantity.Text) ? int.Parse(Quantity.Text) : currentStockQuantity;
+
+                // Validate Price
+                double price;
+                if (!double.TryParse(Price.Text, out price))
+                {
+                    price = currentPrice; // Use current price if input is invalid
+                }
+
+                int stockQuantity = (int)Quantity.Value;
 
                 // Step 3: Update the product
                 using (SqlConnection con = new SqlConnection(connectionString))
@@ -254,8 +301,13 @@ namespace FashionBoutiqueLogin
         {
             try
             {
-                // Get the selected product's PID
-                int pid = Convert.ToInt32(ID.Text);
+                // Get the PID for the operation
+                int pid = GetPidForOperation();
+                if (pid == -1)
+                {
+                    MessageBox.Show("Please select a row or fill the ID field to delete a product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
@@ -306,10 +358,10 @@ namespace FashionBoutiqueLogin
                     using (SqlConnection con = new SqlConnection(connectionString))
                     {
                         con.Open();
-                        string query = "SELECT * FROM Product WHERE Name LIKE @SearchText OR Category LIKE @SearchText OR Brand LIKE @SearchText";
+                        string query = "SELECT * FROM Product WHERE Name LIKE @SearchText";
                         using (SqlCommand cmd = new SqlCommand(query, con))
                         {
-                            cmd.Parameters.AddWithValue("@SearchText", $"%{searchText}%");
+                            cmd.Parameters.AddWithValue("@SearchText", $"{searchText}%");
                             using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                             {
                                 DataTable dataTable = new DataTable();
@@ -328,6 +380,27 @@ namespace FashionBoutiqueLogin
             catch (Exception ex)
             {
                 MessageBox.Show($"Error searching products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Price_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow digits, decimal point, backspace, and negative sign
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != '\b' && e.KeyChar != '-')
+            {
+                e.Handled = true; // Ignore invalid input
+            }
+
+            // Allow only one decimal point
+            if (e.KeyChar == '.' && (sender as TextBox).Text.Contains("."))
+            {
+                e.Handled = true;
+            }
+
+            // Allow only one negative sign at the beginning
+            if (e.KeyChar == '-' && (sender as TextBox).SelectionStart != 0)
+            {
+                e.Handled = true;
             }
         }
     }

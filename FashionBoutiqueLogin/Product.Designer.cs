@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Product));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblSystemName = new System.Windows.Forms.Label();
             this.navigationPanel = new System.Windows.Forms.Panel();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
@@ -41,7 +41,6 @@
             this.SearchText = new System.Windows.Forms.TextBox();
             this.AddProduct = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.Quantity = new System.Windows.Forms.TextBox();
             this.BrandBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -54,10 +53,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ID = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Quantity = new System.Windows.Forms.NumericUpDown();
             this.navigationPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.backgroundpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Quantity)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSystemName
@@ -95,6 +96,7 @@
             // backgroundpanel
             // 
             this.backgroundpanel.BackColor = System.Drawing.Color.DarkGray;
+            this.backgroundpanel.Controls.Add(this.Quantity);
             this.backgroundpanel.Controls.Add(this.label8);
             this.backgroundpanel.Controls.Add(this.SizeBox);
             this.backgroundpanel.Controls.Add(this.DeleteProduct);
@@ -102,7 +104,6 @@
             this.backgroundpanel.Controls.Add(this.SearchText);
             this.backgroundpanel.Controls.Add(this.AddProduct);
             this.backgroundpanel.Controls.Add(this.label7);
-            this.backgroundpanel.Controls.Add(this.Quantity);
             this.backgroundpanel.Controls.Add(this.BrandBox);
             this.backgroundpanel.Controls.Add(this.label6);
             this.backgroundpanel.Controls.Add(this.label5);
@@ -191,13 +192,6 @@
             this.label7.Size = new System.Drawing.Size(89, 16);
             this.label7.TabIndex = 17;
             this.label7.Text = "StockQuantity";
-            // 
-            // Quantity
-            // 
-            this.Quantity.Location = new System.Drawing.Point(575, 425);
-            this.Quantity.Name = "Quantity";
-            this.Quantity.Size = new System.Drawing.Size(129, 22);
-            this.Quantity.TabIndex = 16;
             // 
             // BrandBox
             // 
@@ -300,20 +294,27 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(12, 84);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(776, 286);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // Quantity
+            // 
+            this.Quantity.Location = new System.Drawing.Point(582, 428);
+            this.Quantity.Name = "Quantity";
+            this.Quantity.Size = new System.Drawing.Size(120, 22);
+            this.Quantity.TabIndex = 26;
             // 
             // Product
             // 
@@ -331,6 +332,7 @@
             this.backgroundpanel.ResumeLayout(false);
             this.backgroundpanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Quantity)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -353,7 +355,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox BrandBox;
-        private System.Windows.Forms.TextBox Quantity;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button AddProduct;
         private System.Windows.Forms.TextBox SearchText;
@@ -361,5 +362,6 @@
         private System.Windows.Forms.Button UpdateProduct;
         private System.Windows.Forms.TextBox SizeBox;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown Quantity;
     }
 }
