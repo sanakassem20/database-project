@@ -83,5 +83,15 @@ namespace FashionBoutiqueLogin
         {
             txtPassword.UseSystemPasswordChar = !chkShowPassword.Checked;
         }
+
+        private void loginPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void backgroundPictureBox_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
