@@ -322,7 +322,7 @@
             this.ClientSize = new System.Drawing.Size(800, 624);
             this.Controls.Add(this.backgroundpanel);
             this.Controls.Add(this.navigationPanel);
-            this.Name = "Product";
+            //this.Name = "Product";
             this.Text = "Product";
             this.Load += new System.EventHandler(this.Product_Load_1);
             this.navigationPanel.ResumeLayout(false);
