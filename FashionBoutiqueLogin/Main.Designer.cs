@@ -36,9 +36,6 @@
             this.feedbackpanel = new System.Windows.Forms.Panel();
             this.feedbackbtn = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.salepanel = new System.Windows.Forms.Panel();
-            this.salebtn = new System.Windows.Forms.Button();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.purchasepanel = new System.Windows.Forms.Panel();
             this.purchasebtn = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -53,8 +50,6 @@
             this.backgroundpanel.SuspendLayout();
             this.feedbackpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            this.salepanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.purchasepanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.productpanel.SuspendLayout();
@@ -99,7 +94,6 @@
             // 
             this.backgroundpanel.BackColor = System.Drawing.Color.DarkGray;
             this.backgroundpanel.Controls.Add(this.feedbackpanel);
-            this.backgroundpanel.Controls.Add(this.salepanel);
             this.backgroundpanel.Controls.Add(this.purchasepanel);
             this.backgroundpanel.Controls.Add(this.productpanel);
             this.backgroundpanel.Controls.Add(this.employeepanel);
@@ -108,13 +102,14 @@
             this.backgroundpanel.Name = "backgroundpanel";
             this.backgroundpanel.Size = new System.Drawing.Size(800, 563);
             this.backgroundpanel.TabIndex = 2;
+            this.backgroundpanel.Paint += new System.Windows.Forms.PaintEventHandler(this.backgroundpanel_Paint);
             // 
             // feedbackpanel
             // 
             this.feedbackpanel.BackColor = System.Drawing.Color.Gainsboro;
             this.feedbackpanel.Controls.Add(this.feedbackbtn);
             this.feedbackpanel.Controls.Add(this.pictureBox4);
-            this.feedbackpanel.Location = new System.Drawing.Point(27, 418);
+            this.feedbackpanel.Location = new System.Drawing.Point(27, 312);
             this.feedbackpanel.Name = "feedbackpanel";
             this.feedbackpanel.Size = new System.Drawing.Size(627, 90);
             this.feedbackpanel.TabIndex = 4;
@@ -142,39 +137,6 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 0;
             this.pictureBox4.TabStop = false;
-            // 
-            // salepanel
-            // 
-            this.salepanel.BackColor = System.Drawing.Color.Gainsboro;
-            this.salepanel.Controls.Add(this.salebtn);
-            this.salepanel.Controls.Add(this.pictureBox3);
-            this.salepanel.Location = new System.Drawing.Point(27, 312);
-            this.salepanel.Name = "salepanel";
-            this.salepanel.Size = new System.Drawing.Size(627, 100);
-            this.salepanel.TabIndex = 3;
-            // 
-            // salebtn
-            // 
-            this.salebtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.salebtn.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.salebtn.ForeColor = System.Drawing.Color.Black;
-            this.salebtn.Location = new System.Drawing.Point(159, 31);
-            this.salebtn.Name = "salebtn";
-            this.salebtn.Size = new System.Drawing.Size(143, 30);
-            this.salebtn.TabIndex = 1;
-            this.salebtn.Text = "Sale";
-            this.salebtn.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Gainsboro;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(27, 3);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(87, 77);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
             // 
             // purchasepanel
             // 
@@ -294,8 +256,6 @@
             this.backgroundpanel.ResumeLayout(false);
             this.feedbackpanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            this.salepanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.purchasepanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.productpanel.ResumeLayout(false);
@@ -323,9 +283,6 @@
         private System.Windows.Forms.Panel feedbackpanel;
         private System.Windows.Forms.Button feedbackbtn;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Panel salepanel;
-        private System.Windows.Forms.Button salebtn;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button ProductBtn;
     }
 }

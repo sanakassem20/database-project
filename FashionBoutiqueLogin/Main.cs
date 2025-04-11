@@ -6,12 +6,14 @@ namespace FashionBoutiqueLogin
     public partial class Main : Form
     {
         private readonly string currentEmployeeSSN;
+        private readonly string currentEmployeeName;
 
-        // Constructor to accept the SSN
-        public Main(string ssn)
+        // ✅ Constructor now accepts both SSN and full name
+        public Main(string ssn, string fullName)
         {
             InitializeComponent();
-            currentEmployeeSSN = ssn; // Store the SSN
+            currentEmployeeSSN = ssn;
+            currentEmployeeName = fullName;
         }
 
         private void ProductBtn_Click(object sender, EventArgs e)
@@ -24,9 +26,8 @@ namespace FashionBoutiqueLogin
 
         private void feedbackbtn_Click(object sender, EventArgs e)
         {
-            // Pass the SSN to the Feedback form
             this.Hide();
-            Feedback feedback = new Feedback(currentEmployeeSSN);
+            Feedback feedback = new Feedback(currentEmployeeSSN); // Still only needs SSN
             feedback.ShowDialog();
             this.Show();
         }
@@ -34,9 +35,15 @@ namespace FashionBoutiqueLogin
         private void purchasebtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            purchase purchase = new purchase();
-            purchase.ShowDialog();
+            // ✅ Pass both SSN and employee name to the purchase form
+            purchase purchaseForm = new purchase(currentEmployeeSSN, currentEmployeeName);
+            purchaseForm.ShowDialog();
             this.Show();
+        }
+
+        private void backgroundpanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

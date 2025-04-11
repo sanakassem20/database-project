@@ -7,123 +7,149 @@ namespace FashionBoutiqueLogin
 {
     public partial class purchase : Form
     {
-        SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Mydb"].ToString());
+        private readonly string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["Mydb"].ToString();
+        private readonly string loggedInSSN;
+        private readonly string loggedInEmployeeName;
 
-        public purchase()
+        public purchase(string employeeSSN, string employeeName)
         {
             InitializeComponent();
+            loggedInSSN = employeeSSN;
+            loggedInEmployeeName = employeeName;
         }
 
         private void purchase_Load(object sender, EventArgs e)
         {
-            // Load products into the ComboBox
-            SqlDataAdapter da = new SqlDataAdapter("SELECT PID, Name FROM Product", con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            comboBoxProduct.DataSource = dt;
-            comboBoxProduct.DisplayMember = "Name";
-            comboBoxProduct.ValueMember = "PID";
+            LoadProducts();
+            SetLoggedInEmployee();
+            LoadSalesHistory();
+        }
 
-            // Load employees into the ComboBox
-            SqlDataAdapter daEmp = new SqlDataAdapter("SELECT SSN, FirstName + ' ' + LastName AS FullName FROM Employee", con);
-            DataTable dtEmp = new DataTable();
-            daEmp.Fill(dtEmp);
-            comboBoxEmployee.DataSource = dtEmp;
-            comboBoxEmployee.DisplayMember = "FullName";
-            comboBoxEmployee.ValueMember = "SSN";
+        private void LoadProducts()
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter da = new SqlDataAdapter("SELECT PID, Name FROM Product", con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                comboBoxProduct.DataSource = dt;
+                comboBoxProduct.DisplayMember = "Name";
+                comboBoxProduct.ValueMember = "PID";
+
+                if (dt.Rows.Count > 0)
+                {
+                    comboBoxProduct.SelectedIndex = 0;
+                    comboBoxProduct_SelectedIndexChanged(comboBoxProduct, EventArgs.Empty);
+                }
+            }
+        }
+
+        private void SetLoggedInEmployee()
+        {
+            comboBoxEmployee.Items.Clear();
+            comboBoxEmployee.Items.Add(loggedInEmployeeName);
+            comboBoxEmployee.SelectedIndex = 0;
+            comboBoxEmployee.Enabled = false;
+        }
+
+        private void LoadSalesHistory()
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter da = new SqlDataAdapter(
+                    @"SELECT p.PurchaseID, pr.Name AS Product, p.Quantity, 
+                             p.TotalPrice, p.DiscountPercent, p.FinalPrice, 
+                             e.FirstName + ' ' + e.LastName AS Employee
+                      FROM Purchase p
+                      JOIN Product pr ON p.PID = pr.PID
+                      JOIN Employee e ON p.EmployeeSSN = e.SSN", con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dataGridViewSales.DataSource = dt;
+            }
         }
 
         private void comboBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxProduct.SelectedValue != null)
+            if (comboBoxProduct.SelectedValue != null && int.TryParse(comboBoxProduct.SelectedValue.ToString(), out int pid))
             {
-                try
+                using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    if (con.State == ConnectionState.Open)
-                        con.Close();
-
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM Product WHERE PID = @pid", con);
-                    cmd.Parameters.AddWithValue("@pid", comboBoxProduct.SelectedValue);
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
+                    try
                     {
-                        lblCategory.Text = "Category: " + reader["Category"].ToString();
-                        lblBrand.Text = "Brand: " + reader["Brand"].ToString();
-                        lblSize.Text = "Size: " + reader["Size"].ToString();
-                        lblPrice.Text = "Price: " + reader["Price"].ToString();
-                        lblStock.Text = "Stock: " + reader["StockQuantity"].ToString();
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand("SELECT * FROM Product WHERE PID = @pid", con);
+                        cmd.Parameters.AddWithValue("@pid", pid);
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            lblCategory.Text = "Category: " + reader["Category"];
+                            lblBrand.Text = "Brand: " + reader["Brand"];
+                            lblSize.Text = "Size: " + reader["Size"];
+                            lblPrice.Text = "Price: " + reader["Price"];
+                            lblStock.Text = "Stock: " + reader["StockQuantity"];
+                        }
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error loading product details: " + ex.Message);
-                }
-                finally
-                {
-                    if (con.State == ConnectionState.Open)
-                        con.Close();
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
                 }
             }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (comboBoxProduct.SelectedValue != null && txtQuantity.Text != "" && txtSaleID.Text != "" && comboBoxEmployee.SelectedValue != null)
+            if (comboBoxProduct.SelectedValue == null || string.IsNullOrEmpty(txtQuantity.Text))
             {
-                try
+                MessageBox.Show("Please complete all fields.");
+                return;
+            }
+
+            try
+            {
+                int pid = Convert.ToInt32(comboBoxProduct.SelectedValue);
+                int quantity = Convert.ToInt32(txtQuantity.Text);
+                decimal price = decimal.Parse(lblPrice.Text.Replace("Price: ", ""));
+                decimal discount = string.IsNullOrEmpty(txtDiscount.Text) ? 0 : Convert.ToDecimal(txtDiscount.Text);
+                decimal total = quantity * price;
+                decimal final = total * (1 - discount / 100);
+
+                using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    int quantity = int.Parse(txtQuantity.Text);
-                    decimal price = decimal.Parse(lblPrice.Text.Replace("Price: ", ""));
-                    decimal total = quantity * price;
-                    string saleID = txtSaleID.Text;
-                    string employeeSSN = comboBoxEmployee.SelectedValue.ToString(); // Get the selected Employee SSN
-
-                    if (con.State == ConnectionState.Open)
-                        con.Close();
-
                     con.Open();
 
-                    // 1. Check if Sale ID already exists
-                    SqlCommand checkSale = new SqlCommand("SELECT COUNT(*) FROM Sale WHERE ID = @id", con);
-                    checkSale.Parameters.AddWithValue("@id", saleID);
-                    int count = (int)checkSale.ExecuteScalar();
-
-                    if (count == 0)
+                    // Update stock
+                    SqlCommand stockCmd = new SqlCommand(
+                        "UPDATE Product SET StockQuantity = StockQuantity - @qty WHERE PID = @pid AND StockQuantity >= @qty", con);
+                    stockCmd.Parameters.AddWithValue("@qty", quantity);
+                    stockCmd.Parameters.AddWithValue("@pid", pid);
+                    if (stockCmd.ExecuteNonQuery() == 0)
                     {
-                        // 2. Insert into Sale table
-                        SqlCommand insertSale = new SqlCommand("INSERT INTO Sale (ID, Date, EmployeeSSN, TotalAmount) VALUES (@id, @date, @ssn, @total)", con);
-                        insertSale.Parameters.AddWithValue("@id", saleID);
-                        insertSale.Parameters.AddWithValue("@date", DateTime.Now);
-                        insertSale.Parameters.AddWithValue("@ssn", employeeSSN); // Use selected employee SSN
-                        insertSale.Parameters.AddWithValue("@total", total);
-                        insertSale.ExecuteNonQuery();
+                        MessageBox.Show("Insufficient stock.");
+                        return;
                     }
 
-                    // 3. Insert into Purchase table
-                    SqlCommand insertPurchase = new SqlCommand("INSERT INTO Purchase (SaleID, PID, Quantity, PriceAtSale) VALUES (@saleID, @pid, @quantity, @price)", con);
-                    insertPurchase.Parameters.AddWithValue("@saleID", saleID);
-                    insertPurchase.Parameters.AddWithValue("@pid", comboBoxProduct.SelectedValue);
-                    insertPurchase.Parameters.AddWithValue("@quantity", quantity);
-                    insertPurchase.Parameters.AddWithValue("@price", price);
-                    insertPurchase.ExecuteNonQuery();
+                    // Insert purchase
+                    SqlCommand insert = new SqlCommand(
+                        "INSERT INTO Purchase (PID, Quantity, TotalPrice, DiscountPercent, FinalPrice, EmployeeSSN) " +
+                        "VALUES (@pid, @qty, @total, @discount, @final, @ssn)", con);
+                    insert.Parameters.AddWithValue("@pid", pid);
+                    insert.Parameters.AddWithValue("@qty", quantity);
+                    insert.Parameters.AddWithValue("@total", total);
+                    insert.Parameters.AddWithValue("@discount", discount);
+                    insert.Parameters.AddWithValue("@final", final);
+                    insert.Parameters.AddWithValue("@ssn", loggedInSSN);
+                    insert.ExecuteNonQuery();
+                }
 
-                    MessageBox.Show("Purchase saved successfully!");
-                    ClearForm();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error saving purchase: " + ex.Message);
-                }
-                finally
-                {
-                    if (con.State == ConnectionState.Open)
-                        con.Close();
-                }
+                MessageBox.Show("Purchase saved successfully!");
+                ClearForm();
+                LoadSalesHistory();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Please fill all fields correctly.");
+                MessageBox.Show("Error saving: " + ex.Message);
             }
         }
 
@@ -134,14 +160,8 @@ namespace FashionBoutiqueLogin
 
         private void ClearForm()
         {
-            txtSaleID.Clear();
             txtQuantity.Clear();
-            comboBoxProduct.SelectedIndex = -1;
-            lblCategory.Text = "Category:";
-            lblBrand.Text = "Brand:";
-            lblSize.Text = "Size:";
-            lblPrice.Text = "Price:";
-            lblStock.Text = "Stock:";
+            txtDiscount.Clear();
         }
     }
 }
