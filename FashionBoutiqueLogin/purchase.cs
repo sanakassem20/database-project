@@ -32,14 +32,20 @@ namespace FashionBoutiqueLogin
                 SqlDataAdapter da = new SqlDataAdapter("SELECT PID, Name FROM Product", con);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
+
+                // Add placeholder row
+                DataRow placeholderRow = dt.NewRow();
+                placeholderRow["PID"] = -1; // Use -1 as a placeholder value
+                placeholderRow["Name"] = "Select Product";
+                dt.Rows.InsertAt(placeholderRow, 0);
+
                 comboBoxProduct.DataSource = dt;
                 comboBoxProduct.DisplayMember = "Name";
                 comboBoxProduct.ValueMember = "PID";
 
-                if (dt.Rows.Count > 0)
+                if (dt.Rows.Count > 1) // Skip placeholder
                 {
                     comboBoxProduct.SelectedIndex = 0;
-                    comboBoxProduct_SelectedIndexChanged(comboBoxProduct, EventArgs.Empty);
                 }
             }
         }
@@ -73,6 +79,16 @@ namespace FashionBoutiqueLogin
         {
             if (comboBoxProduct.SelectedValue != null && int.TryParse(comboBoxProduct.SelectedValue.ToString(), out int pid))
             {
+                if (pid == -1) // Placeholder selected
+                {
+                    lblCategory.Text = "Category: ";
+                    lblBrand.Text = "Brand: ";
+                    lblSize.Text = "Size: ";
+                    lblPrice.Text = "Price: ";
+                    lblStock.Text = "Stock: ";
+                    return;
+                }
+
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     try
@@ -100,7 +116,13 @@ namespace FashionBoutiqueLogin
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (comboBoxProduct.SelectedValue == null || string.IsNullOrEmpty(txtQuantity.Text))
+            if (comboBoxProduct.SelectedValue == null || comboBoxProduct.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please select a valid product.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtQuantity.Text) || string.IsNullOrEmpty(lblPrice.Text.Replace("Price: ", "")))
             {
                 MessageBox.Show("Please complete all fields.");
                 return;
@@ -109,9 +131,9 @@ namespace FashionBoutiqueLogin
             try
             {
                 int pid = Convert.ToInt32(comboBoxProduct.SelectedValue);
-                int quantity = Convert.ToInt32(txtQuantity.Text);
+                int quantity = ValidateIntegerInput(txtQuantity.Text);
                 decimal price = decimal.Parse(lblPrice.Text.Replace("Price: ", ""));
-                decimal discount = string.IsNullOrEmpty(txtDiscount.Text) ? 0 : Convert.ToDecimal(txtDiscount.Text);
+                decimal discount = string.IsNullOrEmpty(txtDiscount.Text) ? 0 : ValidateDecimalInput(txtDiscount.Text);
                 decimal total = quantity * price;
                 decimal final = total * (1 - discount / 100);
 
@@ -162,11 +184,30 @@ namespace FashionBoutiqueLogin
         {
             txtQuantity.Clear();
             txtDiscount.Clear();
+            comboBoxProduct.SelectedIndex = 0; // Reset to "Select Product"
         }
 
         private void backbtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private int ValidateIntegerInput(string input)
+        {
+            if (!int.TryParse(input, out int result) || result <= 0)
+            {
+                throw new ArgumentException("Quantity must be a positive integer.");
+            }
+            return result;
+        }
+
+        private decimal ValidateDecimalInput(string input)
+        {
+            if (!decimal.TryParse(input, out decimal result) || result < 0)
+            {
+                throw new ArgumentException("Discount must be a non-negative decimal number.");
+            }
+            return result;
         }
     }
 }
