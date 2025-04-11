@@ -163,5 +163,10 @@ namespace FashionBoutiqueLogin
             txtQuantity.Clear();
             txtDiscount.Clear();
         }
+
+        private void backbtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

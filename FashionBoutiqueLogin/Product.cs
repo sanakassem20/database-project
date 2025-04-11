@@ -403,5 +403,10 @@ namespace FashionBoutiqueLogin
                 e.Handled = true;
             }
         }
+
+        private void backbtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -34,6 +34,8 @@
             this.navigationPanel = new System.Windows.Forms.Panel();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.backgroundpanel = new System.Windows.Forms.Panel();
+            this.backbtn = new System.Windows.Forms.Button();
+            this.Quantity = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.SizeBox = new System.Windows.Forms.TextBox();
             this.DeleteProduct = new System.Windows.Forms.Button();
@@ -53,12 +55,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ID = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Quantity = new System.Windows.Forms.NumericUpDown();
             this.navigationPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.backgroundpanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Quantity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSystemName
@@ -96,6 +97,7 @@
             // backgroundpanel
             // 
             this.backgroundpanel.BackColor = System.Drawing.Color.DarkGray;
+            this.backgroundpanel.Controls.Add(this.backbtn);
             this.backgroundpanel.Controls.Add(this.Quantity);
             this.backgroundpanel.Controls.Add(this.label8);
             this.backgroundpanel.Controls.Add(this.SizeBox);
@@ -121,6 +123,25 @@
             this.backgroundpanel.Name = "backgroundpanel";
             this.backgroundpanel.Size = new System.Drawing.Size(800, 523);
             this.backgroundpanel.TabIndex = 3;
+            // 
+            // backbtn
+            // 
+            this.backbtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.backbtn.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.backbtn.Location = new System.Drawing.Point(12, 8);
+            this.backbtn.Name = "backbtn";
+            this.backbtn.Size = new System.Drawing.Size(102, 42);
+            this.backbtn.TabIndex = 27;
+            this.backbtn.Text = "Back";
+            this.backbtn.UseVisualStyleBackColor = false;
+            this.backbtn.Click += new System.EventHandler(this.backbtn_Click);
+            // 
+            // Quantity
+            // 
+            this.Quantity.Location = new System.Drawing.Point(582, 428);
+            this.Quantity.Name = "Quantity";
+            this.Quantity.Size = new System.Drawing.Size(120, 22);
+            this.Quantity.TabIndex = 26;
             // 
             // label8
             // 
@@ -309,13 +330,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(776, 286);
             this.dataGridView1.TabIndex = 0;
             // 
-            // Quantity
-            // 
-            this.Quantity.Location = new System.Drawing.Point(582, 428);
-            this.Quantity.Name = "Quantity";
-            this.Quantity.Size = new System.Drawing.Size(120, 22);
-            this.Quantity.TabIndex = 26;
-            // 
             // Product
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -324,6 +338,7 @@
             this.Controls.Add(this.backgroundpanel);
             this.Controls.Add(this.navigationPanel);
             //this.Name = "Product";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Product";
             this.Load += new System.EventHandler(this.Product_Load_1);
             this.navigationPanel.ResumeLayout(false);
@@ -331,8 +346,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.backgroundpanel.ResumeLayout(false);
             this.backgroundpanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Quantity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -363,5 +378,6 @@
         private System.Windows.Forms.TextBox SizeBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown Quantity;
+        private System.Windows.Forms.Button backbtn;
     }
 }

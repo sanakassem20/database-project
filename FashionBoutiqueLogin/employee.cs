@@ -16,5 +16,10 @@ namespace FashionBoutiqueLogin
         {
             InitializeComponent();
         }
+
+        private void employee_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

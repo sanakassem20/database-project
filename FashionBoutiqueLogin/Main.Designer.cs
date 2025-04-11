@@ -249,7 +249,8 @@
             this.Controls.Add(this.backgroundpanel);
             this.Controls.Add(this.navigationPanel);
             this.Name = "Main";
-            this.Text = "Form3";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Dashboard";
             this.navigationPanel.ResumeLayout(false);
             this.navigationPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();

@@ -225,7 +225,8 @@ namespace FashionBoutiqueLogin
             this.Controls.Add(this.loginPanel);
             this.Controls.Add(this.backgroundPictureBox);
             this.Name = "Form1";
-            this.Text = "Login Page";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Login";
             ((System.ComponentModel.ISupportInitialize)(this.usernameIconPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwordIconPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPictureBox)).EndInit();
