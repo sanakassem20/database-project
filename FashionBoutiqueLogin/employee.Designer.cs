@@ -23,6 +23,7 @@ namespace FashionBoutiqueLogin
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.lblSystemName = new System.Windows.Forms.Label();
             this.backgroundpanel = new System.Windows.Forms.Panel();
+            this.updatebtn = new System.Windows.Forms.Button();
             this.DGV = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -79,6 +80,7 @@ namespace FashionBoutiqueLogin
             // backgroundpanel
             // 
             this.backgroundpanel.BackColor = System.Drawing.Color.DarkGray;
+            this.backgroundpanel.Controls.Add(this.updatebtn);
             this.backgroundpanel.Controls.Add(this.DGV);
             this.backgroundpanel.Controls.Add(this.label1);
             this.backgroundpanel.Controls.Add(this.label2);
@@ -100,6 +102,17 @@ namespace FashionBoutiqueLogin
             this.backgroundpanel.Name = "backgroundpanel";
             this.backgroundpanel.Size = new System.Drawing.Size(800, 523);
             this.backgroundpanel.TabIndex = 1;
+            // 
+            // updatebtn
+            // 
+            this.updatebtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.updatebtn.Location = new System.Drawing.Point(378, 473);
+            this.updatebtn.Name = "updatebtn";
+            this.updatebtn.Size = new System.Drawing.Size(100, 30);
+            this.updatebtn.TabIndex = 16;
+            this.updatebtn.Text = "Update";
+            this.updatebtn.UseVisualStyleBackColor = true;
+            this.updatebtn.Click += new System.EventHandler(this.updatebtn_Click);
             // 
             // DGV
             // 
@@ -230,7 +243,7 @@ namespace FashionBoutiqueLogin
             this.loadbtn.TabIndex = 12;
             this.loadbtn.Text = "LOAD";
             this.loadbtn.UseVisualStyleBackColor = true;
-            loadbtn.Click += new System.EventHandler(this.loadbtn_Click);
+            this.loadbtn.Click += new System.EventHandler(this.loadbtn_Click);
             // 
             // addbtn
             // 
@@ -241,7 +254,7 @@ namespace FashionBoutiqueLogin
             this.addbtn.TabIndex = 13;
             this.addbtn.Text = "ADD";
             this.addbtn.UseVisualStyleBackColor = true;
-            addbtn.Click += new System.EventHandler(this.addbtn_Click);
+            this.addbtn.Click += new System.EventHandler(this.addbtn_Click);
             // 
             // deletebtn
             // 
@@ -310,5 +323,6 @@ namespace FashionBoutiqueLogin
         private System.Windows.Forms.Button addbtn;
         private System.Windows.Forms.Button deletebtn;
         private System.Windows.Forms.ComboBox ROLECOMBOBOX;
+        private Button updatebtn;
     }
 }
