@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-
+using System.Configuration;
 namespace FashionBoutiqueLogin
 {
     public partial class Form1 : Form
     {
-        // Connection string
-        SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Mydb"].ToString());
+
+        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["mydb1"].ConnectionString);
+
 
         public Form1()
         {
@@ -23,38 +24,40 @@ namespace FashionBoutiqueLogin
             try
             {
                 con.Open();
+
                 string query = "SELECT Role, FirstName, SSN FROM Employee WHERE Username = @Username AND Password = @Password";
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@Username", username);
-                cmd.Parameters.AddWithValue("@Password", password);
-
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                if (reader.Read())
+                using (SqlCommand cmd = new SqlCommand(query, con))
                 {
-                    string role = reader["Role"].ToString();
-                    string firstName = reader["FirstName"].ToString();
-                    string ssn = reader["SSN"].ToString();
+                    cmd.Parameters.AddWithValue("@Username", username);
+                    cmd.Parameters.AddWithValue("@Password", password);
 
-                    lblMessage.ForeColor = System.Drawing.Color.Green;
-                    lblMessage.Text = $"Welcome {firstName}!";
+                    SqlDataReader reader = cmd.ExecuteReader();
 
-                    this.Hide();
+                    if (reader.Read())
+                    {
+                        string role = reader["Role"].ToString();
+                        string firstName = reader["FirstName"].ToString();
+                        string ssn = reader["SSN"].ToString();
 
-                    Main mainForm = new Main(ssn, role);
-                    mainForm.ShowDialog();
-                    this.Show();
-                }
-                else
-                {
-                    lblMessage.ForeColor = System.Drawing.Color.Red;
-                    lblMessage.Text = "Invalid Username or Password!";
+                        lblMessage.ForeColor = System.Drawing.Color.Green;
+                        lblMessage.Text = $"Welcome {firstName}!";
+                        this.Hide();
+
+                        Main mainForm = new Main(ssn, role);
+                        mainForm.ShowDialog();
+                        this.Show();
+                    }
+                    else
+                    {
+                        lblMessage.ForeColor = System.Drawing.Color.Red;
+                        lblMessage.Text = "Invalid Username or Password!";
+                    }
                 }
             }
             catch (Exception ex)
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = "Error: " + ex.Message;
+                lblMessage.Text = $"Error: {ex.Message}";
             }
             finally
             {
@@ -64,6 +67,7 @@ namespace FashionBoutiqueLogin
                 }
             }
         }
+
 
 
         private void picxbox_Click(object sender, EventArgs e)

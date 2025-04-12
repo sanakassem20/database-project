@@ -253,6 +253,7 @@
             this.employeepanel.Name = "employeepanel";
             this.employeepanel.Size = new System.Drawing.Size(627, 90);
             this.employeepanel.TabIndex = 0;
+
             // 
             // employeebtn
             // 

@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -62,17 +62,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminPanelForm.cs">
+    <Compile Include="Employee.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminPanelForm.Designer.cs">
-      <DependentUpon>AdminPanelForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="employee.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="employee.Designer.cs">
-      <DependentUpon>employee.cs</DependentUpon>
+    <Compile Include="Employee.Designer.cs">
+      <DependentUpon>Employee.cs</DependentUpon>
     </Compile>
     <Compile Include="Feedback.cs">
       <SubType>Form</SubType>
@@ -92,14 +86,7 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mydb.cs">
-      <DependentUpon>Mydb.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Mydb.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Mydb.xsd</DependentUpon>
-    </Compile>
+    <Compile Include="Microsoft\VisualBasic\Interaction.cs" />
     <Compile Include="Product.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +101,9 @@
     <Compile Include="purchase.Designer.cs">
       <DependentUpon>purchase.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Employee.resx">
+      <DependentUpon>Employee.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Feedback.resx">
       <DependentUpon>Feedback.cs</DependentUpon>
     </EmbeddedResource>
@@ -134,21 +124,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="purchase.resx">
       <DependentUpon>purchase.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Mydb.xsc">
-      <DependentUpon>Mydb.xsd</DependentUpon>
-    </None>
-    <None Include="Mydb.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Mydb.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Mydb.xss">
-      <DependentUpon>Mydb.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -163,13 +143,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Mydb.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Mydb_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Mydb.mdf</DependentUpon>
-    </Content>
+    <None Include="Resources\logo,pbox.png" />
+    <None Include="Resources\logoImg.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -182,6 +157,15 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="mydb1.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mydb1_log.ldf">
+      <DependentUpon>mydb1.mdf</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

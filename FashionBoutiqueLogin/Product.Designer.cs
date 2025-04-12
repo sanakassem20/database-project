@@ -1,4 +1,6 @@
-﻿namespace FashionBoutiqueLogin
+﻿using System.Windows.Forms;
+
+namespace FashionBoutiqueLogin
 {
     partial class Product
     {
@@ -345,7 +347,13 @@
         private System.Windows.Forms.TextBox ID;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox Name;
+        private new System.Windows.Forms.TextBox Name;
+
+        public Product(TextBox name)
+        {
+            Name = name;
+        }
+
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox Price;

@@ -13,7 +13,7 @@ namespace FashionBoutiqueLogin
         {
             InitializeComponent();
             // Initialize the connection string from the configuration file
-            connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["Mydb"].ToString();
+            connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["mydb1"].ToString();
         }
 
         private void Product_Load_1(object sender, EventArgs e)

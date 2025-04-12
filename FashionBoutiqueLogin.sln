@@ -14,7 +14,6 @@ Global
 		{4899583F-1373-4980-9C56-7855D935F515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4899583F-1373-4980-9C56-7855D935F515}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4899583F-1373-4980-9C56-7855D935F515}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4899583F-1373-4980-9C56-7855D935F515}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

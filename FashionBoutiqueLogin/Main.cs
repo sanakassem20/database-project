@@ -41,30 +41,24 @@ namespace FashionBoutiqueLogin
             this.Show();
         }
 
-        private void EmployeeBtn_Click(object sender, EventArgs e)
+
+
+        private void employeebtn_Click_1(object sender, EventArgs e)
         {
-            // Check if the user is an Admin
             if (currentUserRole == "Admin")
             {
-                // If the user is Admin, navigate to Admin Panel
                 this.Hide();
-                AdminPanelForm adminPanel = new AdminPanelForm();
-                adminPanel.ShowDialog();
+                Employee employee = new Employee();
+                employee.ShowDialog();
                 this.Show();
             }
             else
             {
-                // If the user is not Admin, show an error message or handle accordingly
-                MessageBox.Show("You do not have permission to access the Admin panel.");
+                
+                MessageBox.Show("You do not have permission to access the Employee page.");
             }
         }
 
-        private void employeebtn_Click_1(object sender, EventArgs e)
-        {
-            this.Hide();
-            employee employee = new employee();
-            employee.ShowDialog();
-            this.Show();
-        }
+
     }
 }
