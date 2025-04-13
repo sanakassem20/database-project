@@ -13,15 +13,9 @@ namespace FashionBoutiqueLogin
         private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.PictureBox backgroundPictureBox;
         private System.Windows.Forms.Panel loginPanel;
-        private System.Windows.Forms.Label lblSystemName;
-        private System.Windows.Forms.Panel navigationPanel;
-        private System.Windows.Forms.PictureBox logoPictureBox;
         private System.Windows.Forms.PictureBox usernameIconPictureBox;
         private System.Windows.Forms.PictureBox passwordIconPictureBox;
         private System.Windows.Forms.CheckBox chkShowPassword;
-
-
-
 
         protected override void Dispose(bool disposing)
         {
@@ -46,71 +40,83 @@ namespace FashionBoutiqueLogin
             this.backgroundPictureBox = new System.Windows.Forms.PictureBox();
             this.loginPanel = new System.Windows.Forms.Panel();
             this.chkShowPassword = new System.Windows.Forms.CheckBox();
-            this.navigationPanel = new System.Windows.Forms.Panel();
-            this.logoPictureBox = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.backIconPictureBox = new System.Windows.Forms.PictureBox();
             this.lblSystemName = new System.Windows.Forms.Label();
+            this.logoPictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.usernameIconPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwordIconPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPictureBox)).BeginInit();
             this.loginPanel.SuspendLayout();
-            this.navigationPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.backIconPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblUsername.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.lblUsername.ForeColor = System.Drawing.Color.Black;
             this.lblUsername.Location = new System.Drawing.Point(59, 53);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(88, 19);
+            this.lblUsername.Size = new System.Drawing.Size(89, 23);
+            this.lblUsername.TabIndex = 0;
             this.lblUsername.Text = "Username";
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblPassword.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.lblPassword.ForeColor = System.Drawing.Color.Black;
             this.lblPassword.Location = new System.Drawing.Point(59, 101);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(88, 19);
+            this.lblPassword.Size = new System.Drawing.Size(85, 23);
+            this.lblPassword.TabIndex = 1;
             this.lblPassword.Text = "Password";
             // 
             // txtUsername
             // 
+            this.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtUsername.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtUsername.Location = new System.Drawing.Point(160, 53);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(200, 22);
-            
+            this.txtUsername.Size = new System.Drawing.Size(200, 27);
+            this.txtUsername.TabIndex = 2;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(160, 98);
+            this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtPassword.Location = new System.Drawing.Point(160, 101);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(200, 22);
+            this.txtPassword.Size = new System.Drawing.Size(200, 27);
+            this.txtPassword.TabIndex = 3;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // btnLogin
             // 
             this.btnLogin.BackColor = System.Drawing.Color.HotPink;
-            this.btnLogin.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
             this.btnLogin.Location = new System.Drawing.Point(134, 157);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(100, 30);
+            this.btnLogin.Size = new System.Drawing.Size(100, 35);
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
+            this.btnLogin.MouseHover += new System.EventHandler(this.btnLogin_MouseHover_1);
             // 
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
+            this.lblMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic);
             this.lblMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblMessage.Location = new System.Drawing.Point(150, 190);
+            this.lblMessage.Location = new System.Drawing.Point(150, 195);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(0, 16);
+            this.lblMessage.Size = new System.Drawing.Size(0, 20);
             this.lblMessage.TabIndex = 5;
             // 
             // usernameIconPictureBox
@@ -118,23 +124,25 @@ namespace FashionBoutiqueLogin
             this.usernameIconPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("usernameIconPictureBox.Image")));
             this.usernameIconPictureBox.Location = new System.Drawing.Point(28, 50);
             this.usernameIconPictureBox.Name = "usernameIconPictureBox";
-            this.usernameIconPictureBox.Size = new System.Drawing.Size(25, 22);
-            this.usernameIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.usernameIconPictureBox.Size = new System.Drawing.Size(25, 25);
+            this.usernameIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.usernameIconPictureBox.TabIndex = 6;
             this.usernameIconPictureBox.TabStop = false;
             // 
             // passwordIconPictureBox
             // 
             this.passwordIconPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("passwordIconPictureBox.Image")));
-            this.passwordIconPictureBox.Location = new System.Drawing.Point(28, 95);
+            this.passwordIconPictureBox.Location = new System.Drawing.Point(28, 101);
             this.passwordIconPictureBox.Name = "passwordIconPictureBox";
             this.passwordIconPictureBox.Size = new System.Drawing.Size(25, 25);
-            this.passwordIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.passwordIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.passwordIconPictureBox.TabIndex = 7;
             this.passwordIconPictureBox.TabStop = false;
             // 
             // backgroundPictureBox
             // 
+            this.backgroundPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.backgroundPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.backgroundPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.backgroundPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("backgroundPictureBox.Image")));
             this.backgroundPictureBox.Location = new System.Drawing.Point(0, 0);
@@ -143,15 +151,13 @@ namespace FashionBoutiqueLogin
             this.backgroundPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.backgroundPictureBox.TabIndex = 2;
             this.backgroundPictureBox.TabStop = false;
+            this.backgroundPictureBox.UseWaitCursor = true;
             this.backgroundPictureBox.Click += new System.EventHandler(this.backgroundPictureBox_Click);
             // 
             // loginPanel
             // 
-            this.loginPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.loginPanel.BackColor = System.Drawing.Color.Gainsboro;
-            this.loginPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.loginPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.loginPanel.BackColor = System.Drawing.Color.White;
             this.loginPanel.Controls.Add(this.lblUsername);
             this.loginPanel.Controls.Add(this.lblPassword);
             this.loginPanel.Controls.Add(this.txtUsername);
@@ -161,62 +167,74 @@ namespace FashionBoutiqueLogin
             this.loginPanel.Controls.Add(this.lblMessage);
             this.loginPanel.Controls.Add(this.usernameIconPictureBox);
             this.loginPanel.Controls.Add(this.passwordIconPictureBox);
-            this.loginPanel.Location = new System.Drawing.Point(225, 324);
+            this.loginPanel.Location = new System.Drawing.Point(220, 295);
             this.loginPanel.Name = "loginPanel";
-            this.loginPanel.Size = new System.Drawing.Size(398, 211);
+            this.loginPanel.Size = new System.Drawing.Size(396, 215);
             this.loginPanel.TabIndex = 1;
-            this.loginPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.loginPanel_Paint);
             // 
             // chkShowPassword
             // 
             this.chkShowPassword.AutoSize = true;
-            this.chkShowPassword.Font = new System.Drawing.Font("Arial", 9F);
-            this.chkShowPassword.Location = new System.Drawing.Point(223, 130);
+            this.chkShowPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.chkShowPassword.Location = new System.Drawing.Point(160, 130);
             this.chkShowPassword.Name = "chkShowPassword";
-            this.chkShowPassword.Size = new System.Drawing.Size(137, 21);
+            this.chkShowPassword.Size = new System.Drawing.Size(132, 24);
             this.chkShowPassword.TabIndex = 8;
             this.chkShowPassword.Text = "Show Password";
             this.chkShowPassword.UseVisualStyleBackColor = true;
             this.chkShowPassword.CheckedChanged += new System.EventHandler(this.chkShowPassword_CheckedChanged);
             // 
-            // navigationPanel
+            // panel1
             // 
-            this.navigationPanel.BackColor = System.Drawing.Color.Gainsboro;
-            this.navigationPanel.Controls.Add(this.logoPictureBox);
-            this.navigationPanel.Controls.Add(this.lblSystemName);
-            this.navigationPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.navigationPanel.Location = new System.Drawing.Point(0, 0);
-            this.navigationPanel.Name = "navigationPanel";
-            this.navigationPanel.Size = new System.Drawing.Size(838, 95);
-            this.navigationPanel.TabIndex = 0;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.panel1.Controls.Add(this.logoPictureBox);
+            this.panel1.Controls.Add(this.backIconPictureBox);
+            this.panel1.Controls.Add(this.lblSystemName);
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(838, 104);
+            this.panel1.TabIndex = 3;
             // 
-            // logoPictureBox
+            // backIconPictureBox
             // 
-            this.logoPictureBox.BackColor = System.Drawing.Color.Gainsboro;
-            this.logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Image")));
-            this.logoPictureBox.Location = new System.Drawing.Point(12, 0);
-            this.logoPictureBox.Name = "logoPictureBox";
-            this.logoPictureBox.Size = new System.Drawing.Size(129, 101);
-            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.logoPictureBox.TabIndex = 0;
-            this.logoPictureBox.TabStop = false;
+            this.backIconPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("backIconPictureBox.Image")));
+            this.backIconPictureBox.Location = new System.Drawing.Point(740, 30);
+            this.backIconPictureBox.Name = "backIconPictureBox";
+            this.backIconPictureBox.Size = new System.Drawing.Size(40, 40);
+            this.backIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.backIconPictureBox.TabIndex = 2;
+            this.backIconPictureBox.TabStop = false;
             // 
             // lblSystemName
             // 
             this.lblSystemName.AutoSize = true;
-            this.lblSystemName.Font = new System.Drawing.Font("Castellar", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSystemName.Location = new System.Drawing.Point(190, 30);
+            this.lblSystemName.Font = new System.Drawing.Font("Castellar", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.lblSystemName.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.lblSystemName.Location = new System.Drawing.Point(138, 30);
             this.lblSystemName.Name = "lblSystemName";
             this.lblSystemName.Size = new System.Drawing.Size(288, 36);
             this.lblSystemName.TabIndex = 1;
             this.lblSystemName.Text = "GLAMVENTORY";
+            // 
+            // logoPictureBox
+            // 
+            this.logoPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Image")));
+            this.logoPictureBox.Location = new System.Drawing.Point(3, 0);
+            this.logoPictureBox.Name = "logoPictureBox";
+            this.logoPictureBox.Size = new System.Drawing.Size(129, 101);
+            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logoPictureBox.TabIndex = 3;
+            this.logoPictureBox.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(838, 856);
-            this.Controls.Add(this.navigationPanel);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.loginPanel);
             this.Controls.Add(this.backgroundPictureBox);
             this.Name = "Form1";
@@ -226,11 +244,17 @@ namespace FashionBoutiqueLogin
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPictureBox)).EndInit();
             this.loginPanel.ResumeLayout(false);
             this.loginPanel.PerformLayout();
-            this.navigationPanel.ResumeLayout(false);
-            this.navigationPanel.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.backIconPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
+
+        private Panel panel1;
+        private PictureBox backIconPictureBox;
+        private Label lblSystemName;
+        private PictureBox logoPictureBox;
     }
 }

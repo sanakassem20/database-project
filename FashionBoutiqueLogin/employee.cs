@@ -12,6 +12,15 @@ namespace FashionBoutiqueLogin
         public Employee()
         {
             InitializeComponent();
+            backIconPictureBox.Click += backIconPictureBox_Click;
+        }
+        private void backIconPictureBox_Click(object sender, EventArgs e)
+        {
+            
+            NavigationManager.ShowPreviousForm();
+
+            // Close the current form
+            this.Close();
         }
 
         #region Event Handlers
@@ -303,7 +312,6 @@ namespace FashionBoutiqueLogin
                 MessageBox.Show($"Error: {ex.Message}");
             }
         }
-       
     }
 
 }

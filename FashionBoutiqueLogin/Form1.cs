@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Drawing;
 namespace FashionBoutiqueLogin
 {
     public partial class Form1 : Form
@@ -88,9 +89,19 @@ namespace FashionBoutiqueLogin
 
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            pictureBox1.BackColor= ColorTranslator.FromHtml("#FF6B6B");
+        }
+
+        private void btnLogin_MouseHover_1(object sender, EventArgs e)
+        {
+            btnLogin.BackColor = ColorTranslator.FromHtml("#FF6B6B");
+        }
+
         private void backgroundPictureBox_Click(object sender, EventArgs e)
         {
 
         }
     }
-}
+    }

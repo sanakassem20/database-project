@@ -7,7 +7,7 @@ namespace FashionBoutiqueLogin
 {
     public partial class purchase : Form
     {
-        SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Mydb"].ToString());
+        SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["mydb1"].ToString());
 
         public purchase()
         {

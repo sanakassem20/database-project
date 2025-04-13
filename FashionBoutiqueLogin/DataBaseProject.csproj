@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NavigationManager.cs" />
     <Compile Include="Employee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +167,8 @@
       <DependentUpon>mydb1.mdf</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\background22.png" />
+    <None Include="Resources\backIcon-removebg-preview.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

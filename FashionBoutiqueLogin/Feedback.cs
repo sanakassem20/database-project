@@ -179,5 +179,10 @@ namespace FashionBoutiqueLogin
             Console.WriteLine($"Error: {ex.Message}\nStack Trace: {ex.StackTrace}");
             MessageBox.Show($"{message}\nDetails: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void CommentLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

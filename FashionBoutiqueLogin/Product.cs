@@ -12,8 +12,16 @@ namespace FashionBoutiqueLogin
         public Product()
         {
             InitializeComponent();
-            // Initialize the connection string from the configuration file
             connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["mydb1"].ToString();
+            backIconPictureBox.Click += backIconPictureBox_Click;
+        }
+        private void backIconPictureBox_Click(object sender, EventArgs e)
+        {
+            // Navigate back to the previous form
+            NavigationManager.ShowPreviousForm();
+
+            // Close the current form
+            this.Close();
         }
 
         private void Product_Load_1(object sender, EventArgs e)
