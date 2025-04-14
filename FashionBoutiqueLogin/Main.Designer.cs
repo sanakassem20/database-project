@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.navigationPanel = new System.Windows.Forms.Panel();
+            this.logoPictureBox = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.backIconPictureBox = new System.Windows.Forms.PictureBox();
             this.lblSystemName = new System.Windows.Forms.Label();
             this.backgroundpanel = new System.Windows.Forms.Panel();
@@ -45,9 +47,9 @@
             this.employeepanel = new System.Windows.Forms.Panel();
             this.employeebtn = new System.Windows.Forms.Button();
             this.employeeicon = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.navigationPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backIconPictureBox)).BeginInit();
             this.backgroundpanel.SuspendLayout();
             this.feedbackpanel.SuspendLayout();
@@ -58,8 +60,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.employeepanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.employeeicon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // navigationPanel
@@ -74,6 +74,27 @@
             this.navigationPanel.Name = "navigationPanel";
             this.navigationPanel.Size = new System.Drawing.Size(689, 100);
             this.navigationPanel.TabIndex = 1;
+            // 
+            // logoPictureBox
+            // 
+            this.logoPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Image")));
+            this.logoPictureBox.Location = new System.Drawing.Point(3, -4);
+            this.logoPictureBox.Name = "logoPictureBox";
+            this.logoPictureBox.Size = new System.Drawing.Size(129, 101);
+            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logoPictureBox.TabIndex = 5;
+            this.logoPictureBox.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(630, 15);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(47, 29);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 4;
+            this.pictureBox3.TabStop = false;
             // 
             // backIconPictureBox
             // 
@@ -114,9 +135,9 @@
             this.feedbackpanel.BackColor = System.Drawing.Color.White;
             this.feedbackpanel.Controls.Add(this.feedbackbtn);
             this.feedbackpanel.Controls.Add(this.pictureBox4);
-            this.feedbackpanel.Location = new System.Drawing.Point(50, 370);
+            this.feedbackpanel.Location = new System.Drawing.Point(3, 377);
             this.feedbackpanel.Name = "feedbackpanel";
-            this.feedbackpanel.Size = new System.Drawing.Size(700, 90);
+            this.feedbackpanel.Size = new System.Drawing.Size(700, 100);
             this.feedbackpanel.TabIndex = 3;
             // 
             // feedbackbtn
@@ -136,9 +157,9 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(25, 10);
+            this.pictureBox4.Location = new System.Drawing.Point(19, 3);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(70, 70);
+            this.pictureBox4.Size = new System.Drawing.Size(76, 78);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 0;
             this.pictureBox4.TabStop = false;
@@ -148,9 +169,9 @@
             this.purchasepanel.BackColor = System.Drawing.Color.White;
             this.purchasepanel.Controls.Add(this.purchasebtn);
             this.purchasepanel.Controls.Add(this.pictureBox2);
-            this.purchasepanel.Location = new System.Drawing.Point(50, 255);
+            this.purchasepanel.Location = new System.Drawing.Point(3, 257);
             this.purchasepanel.Name = "purchasepanel";
-            this.purchasepanel.Size = new System.Drawing.Size(700, 90);
+            this.purchasepanel.Size = new System.Drawing.Size(700, 100);
             this.purchasepanel.TabIndex = 2;
             // 
             // purchasebtn
@@ -170,9 +191,9 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(25, 10);
+            this.pictureBox2.Location = new System.Drawing.Point(14, 10);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(70, 70);
+            this.pictureBox2.Size = new System.Drawing.Size(87, 87);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
@@ -182,9 +203,9 @@
             this.productpanel.BackColor = System.Drawing.Color.White;
             this.productpanel.Controls.Add(this.ProductBtn);
             this.productpanel.Controls.Add(this.pictureBox1);
-            this.productpanel.Location = new System.Drawing.Point(50, 140);
+            this.productpanel.Location = new System.Drawing.Point(3, 136);
             this.productpanel.Name = "productpanel";
-            this.productpanel.Size = new System.Drawing.Size(700, 90);
+            this.productpanel.Size = new System.Drawing.Size(700, 100);
             this.productpanel.TabIndex = 1;
             // 
             // ProductBtn
@@ -204,9 +225,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(25, 10);
+            this.pictureBox1.Location = new System.Drawing.Point(14, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(70, 70);
+            this.pictureBox1.Size = new System.Drawing.Size(81, 87);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -216,9 +237,9 @@
             this.employeepanel.BackColor = System.Drawing.Color.White;
             this.employeepanel.Controls.Add(this.employeebtn);
             this.employeepanel.Controls.Add(this.employeeicon);
-            this.employeepanel.Location = new System.Drawing.Point(50, 25);
+            this.employeepanel.Location = new System.Drawing.Point(0, 18);
             this.employeepanel.Name = "employeepanel";
-            this.employeepanel.Size = new System.Drawing.Size(700, 90);
+            this.employeepanel.Size = new System.Drawing.Size(700, 100);
             this.employeepanel.TabIndex = 0;
             // 
             // employeebtn
@@ -238,33 +259,12 @@
             // employeeicon
             // 
             this.employeeicon.Image = ((System.Drawing.Image)(resources.GetObject("employeeicon.Image")));
-            this.employeeicon.Location = new System.Drawing.Point(25, 10);
+            this.employeeicon.Location = new System.Drawing.Point(16, 10);
             this.employeeicon.Name = "employeeicon";
-            this.employeeicon.Size = new System.Drawing.Size(70, 70);
+            this.employeeicon.Size = new System.Drawing.Size(82, 87);
             this.employeeicon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.employeeicon.TabIndex = 0;
             this.employeeicon.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(630, 15);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(47, 29);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 4;
-            this.pictureBox3.TabStop = false;
-            // 
-            // logoPictureBox
-            // 
-            this.logoPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Image")));
-            this.logoPictureBox.Location = new System.Drawing.Point(3, -4);
-            this.logoPictureBox.Name = "logoPictureBox";
-            this.logoPictureBox.Size = new System.Drawing.Size(129, 101);
-            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.logoPictureBox.TabIndex = 5;
-            this.logoPictureBox.TabStop = false;
             // 
             // Main
             // 
@@ -277,6 +277,8 @@
             this.Text = "GLAMVENTORY - Main Menu";
             this.navigationPanel.ResumeLayout(false);
             this.navigationPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backIconPictureBox)).EndInit();
             this.backgroundpanel.ResumeLayout(false);
             this.feedbackpanel.ResumeLayout(false);
@@ -287,8 +289,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.employeepanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.employeeicon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }

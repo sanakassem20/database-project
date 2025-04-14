@@ -73,6 +73,26 @@ namespace FashionBoutiqueLogin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap background44 {
+            get {
+                object obj = ResourceManager.GetObject("background44", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Backgroundstore {
+            get {
+                object obj = ResourceManager.GetObject("Backgroundstore", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap backIcon_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("backIcon_removebg_preview", resourceCulture);
