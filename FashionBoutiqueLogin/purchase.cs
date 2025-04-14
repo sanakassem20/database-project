@@ -209,5 +209,10 @@ namespace FashionBoutiqueLogin
             }
             return result;
         }
+
+        private void backIconPictureBox_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

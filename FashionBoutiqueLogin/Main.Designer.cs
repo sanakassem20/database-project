@@ -45,6 +45,9 @@
             this.employeepanel = new System.Windows.Forms.Panel();
             this.employeebtn = new System.Windows.Forms.Button();
             this.employeeicon = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.navigationPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.backgroundpanel.SuspendLayout();
@@ -56,11 +59,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.employeepanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.employeeicon)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // navigationPanel
             // 
             this.navigationPanel.BackColor = System.Drawing.Color.Gainsboro;
+            this.navigationPanel.Controls.Add(this.panel1);
             this.navigationPanel.Controls.Add(this.logoPictureBox);
             this.navigationPanel.Controls.Add(this.lblSystemName);
             this.navigationPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -92,7 +98,7 @@
             // 
             // backgroundpanel
             // 
-            this.backgroundpanel.BackColor = System.Drawing.Color.DarkGray;
+            this.backgroundpanel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.backgroundpanel.Controls.Add(this.feedbackpanel);
             this.backgroundpanel.Controls.Add(this.purchasepanel);
             this.backgroundpanel.Controls.Add(this.productpanel);
@@ -106,7 +112,7 @@
             // 
             // feedbackpanel
             // 
-            this.feedbackpanel.BackColor = System.Drawing.Color.Gainsboro;
+            this.feedbackpanel.BackColor = System.Drawing.Color.White;
             this.feedbackpanel.Controls.Add(this.feedbackbtn);
             this.feedbackpanel.Controls.Add(this.pictureBox4);
             this.feedbackpanel.Location = new System.Drawing.Point(27, 312);
@@ -116,6 +122,7 @@
             // 
             // feedbackbtn
             // 
+            this.feedbackbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.feedbackbtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.feedbackbtn.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.feedbackbtn.ForeColor = System.Drawing.Color.Black;
@@ -124,7 +131,7 @@
             this.feedbackbtn.Size = new System.Drawing.Size(148, 29);
             this.feedbackbtn.TabIndex = 1;
             this.feedbackbtn.Text = "Feedback";
-            this.feedbackbtn.UseVisualStyleBackColor = true;
+            this.feedbackbtn.UseVisualStyleBackColor = false;
             this.feedbackbtn.Click += new System.EventHandler(this.feedbackbtn_Click);
             // 
             // pictureBox4
@@ -140,7 +147,7 @@
             // 
             // purchasepanel
             // 
-            this.purchasepanel.BackColor = System.Drawing.Color.Gainsboro;
+            this.purchasepanel.BackColor = System.Drawing.Color.White;
             this.purchasepanel.Controls.Add(this.purchasebtn);
             this.purchasepanel.Controls.Add(this.pictureBox2);
             this.purchasepanel.Location = new System.Drawing.Point(27, 216);
@@ -150,6 +157,7 @@
             // 
             // purchasebtn
             // 
+            this.purchasebtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.purchasebtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.purchasebtn.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.purchasebtn.ForeColor = System.Drawing.Color.Black;
@@ -158,7 +166,7 @@
             this.purchasebtn.Size = new System.Drawing.Size(143, 30);
             this.purchasebtn.TabIndex = 1;
             this.purchasebtn.Text = "Purchase";
-            this.purchasebtn.UseVisualStyleBackColor = true;
+            this.purchasebtn.UseVisualStyleBackColor = false;
             this.purchasebtn.Click += new System.EventHandler(this.purchasebtn_Click);
             // 
             // pictureBox2
@@ -174,7 +182,7 @@
             // 
             // productpanel
             // 
-            this.productpanel.BackColor = System.Drawing.Color.Gainsboro;
+            this.productpanel.BackColor = System.Drawing.Color.White;
             this.productpanel.Controls.Add(this.ProductBtn);
             this.productpanel.Controls.Add(this.pictureBox1);
             this.productpanel.Location = new System.Drawing.Point(27, 120);
@@ -184,6 +192,7 @@
             // 
             // ProductBtn
             // 
+            this.ProductBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.ProductBtn.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.ProductBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ProductBtn.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -193,7 +202,7 @@
             this.ProductBtn.Size = new System.Drawing.Size(143, 40);
             this.ProductBtn.TabIndex = 2;
             this.ProductBtn.Text = "Product";
-            this.ProductBtn.UseVisualStyleBackColor = true;
+            this.ProductBtn.UseVisualStyleBackColor = false;
             this.ProductBtn.Click += new System.EventHandler(this.ProductBtn_Click);
             // 
             // pictureBox1
@@ -209,7 +218,7 @@
             // 
             // employeepanel
             // 
-            this.employeepanel.BackColor = System.Drawing.Color.Gainsboro;
+            this.employeepanel.BackColor = System.Drawing.Color.White;
             this.employeepanel.Controls.Add(this.employeebtn);
             this.employeepanel.Controls.Add(this.employeeicon);
             this.employeepanel.Location = new System.Drawing.Point(27, 24);
@@ -219,6 +228,7 @@
             // 
             // employeebtn
             // 
+            this.employeebtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.employeebtn.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.employeebtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.employeebtn.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -228,7 +238,8 @@
             this.employeebtn.Size = new System.Drawing.Size(143, 40);
             this.employeebtn.TabIndex = 1;
             this.employeebtn.Text = "Employee";
-            this.employeebtn.UseVisualStyleBackColor = true;
+            this.employeebtn.UseVisualStyleBackColor = false;
+            this.employeebtn.Click += new System.EventHandler(this.employeebtn_Click);
             // 
             // employeeicon
             // 
@@ -240,6 +251,40 @@
             this.employeeicon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.employeeicon.TabIndex = 0;
             this.employeeicon.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.panel1.Controls.Add(this.pictureBox3);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(800, 100);
+            this.panel1.TabIndex = 4;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(12, 21);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(129, 71);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 3;
+            this.pictureBox3.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Castellar", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label1.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.label1.Location = new System.Drawing.Point(157, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(288, 36);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "GLAMVENTORY";
             // 
             // Main
             // 
@@ -263,6 +308,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.employeepanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.employeeicon)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -285,5 +333,8 @@
         private System.Windows.Forms.Button feedbackbtn;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Button ProductBtn;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -180,7 +180,7 @@ namespace FashionBoutiqueLogin
             MessageBox.Show($"{message}\nDetails: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void backbtn_Click(object sender, EventArgs e)
+        private void backIconPictureBox_Click(object sender, EventArgs e)
         {
             this.Close();
         }

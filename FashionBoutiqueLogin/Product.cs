@@ -404,7 +404,7 @@ namespace FashionBoutiqueLogin
             }
         }
 
-        private void backbtn_Click(object sender, EventArgs e)
+        private void backIconPictureBox_Click(object sender, EventArgs e)
         {
             this.Close();
         }
