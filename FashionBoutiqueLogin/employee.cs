@@ -23,6 +23,7 @@ namespace FashionBoutiqueLogin
             FIRSTNAMETXT.Clear();
             LASTNAMETXT.Clear();
             USERTXT.Clear();
+            PASSTXT.Clear();
             SALARYTXT.Clear();
             ROLECOMBOBOX.SelectedIndex = -1;
         }
@@ -36,12 +37,13 @@ namespace FashionBoutiqueLogin
             string lastName = LASTNAMETXT.Text.Trim();
             string username = USERTXT.Text.Trim();
             string salary = SALARYTXT.Text.Trim();
+            string password = PASSTXT.Text.Trim();
             string role = ROLECOMBOBOX.SelectedItem?.ToString();
 
             // Validate input fields
             if (string.IsNullOrEmpty(ssn) || string.IsNullOrEmpty(firstName) ||
                 string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(username) ||
-                string.IsNullOrEmpty(salary) || string.IsNullOrEmpty(role))
+                string.IsNullOrEmpty(salary) || string.IsNullOrEmpty(role) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Please fill in all fields.");
                 return;
@@ -53,14 +55,15 @@ namespace FashionBoutiqueLogin
                 {
                     con.Open();
                     string query = @"
-                        INSERT INTO Employee (SSN, FirstName, LastName, Username, Salary, Role) 
-                        VALUES (@SSN, @FirstName, @LastName, @Username, @Salary, @Role)";
+                        INSERT INTO Employee (SSN, FirstName, LastName, Username,Password, Salary, Role) 
+                        VALUES (@SSN, @FirstName, @LastName, @Username,@Password, @Salary, @Role)";
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
                         cmd.Parameters.AddWithValue("@SSN", ssn);
                         cmd.Parameters.AddWithValue("@FirstName", firstName);
                         cmd.Parameters.AddWithValue("@LastName", lastName);
                         cmd.Parameters.AddWithValue("@Username", username);
+                        cmd.Parameters.AddWithValue("@Password", password);
                         cmd.Parameters.AddWithValue("@Salary", decimal.Parse(salary));
                         cmd.Parameters.AddWithValue("@Role", role);
 
@@ -123,31 +126,12 @@ namespace FashionBoutiqueLogin
 
                         using (SqlDataReader reader = checkCmd.ExecuteReader())
                         {
-                            if (reader.HasRows) // Employee exists
+                            if (reader.HasRows)
                             {
-                                reader.Close(); // Close the reader before executing the DELETE query
+                                reader.Close(); 
 
-                                // Step 2: Delete related records in the Purchase table
-                                string deletePurchaseQuery = @"
-                            DELETE FROM Purchase 
-                            WHERE SaleID IN (
-                                SELECT ID FROM Sale WHERE EmployeeSSN = @SSN
-                            )";
-                                using (SqlCommand deletePurchaseCmd = new SqlCommand(deletePurchaseQuery, con))
-                                {
-                                    deletePurchaseCmd.Parameters.AddWithValue("@SSN", ssnToDelete);
-                                    deletePurchaseCmd.ExecuteNonQuery();
-                                }
-
-                                // Step 3: Delete related records in the Sale table
-                                string deleteSaleQuery = "DELETE FROM Sale WHERE EmployeeSSN = @SSN";
-                                using (SqlCommand deleteSaleCmd = new SqlCommand(deleteSaleQuery, con))
-                                {
-                                    deleteSaleCmd.Parameters.AddWithValue("@SSN", ssnToDelete);
-                                    deleteSaleCmd.ExecuteNonQuery();
-                                }
-
-                                // Step 4: Delete related records in the Feedback table
+                             
+                             
                                 string deleteFeedbackQuery = "DELETE FROM Feedback WHERE EmployeeSSN = @SSN";
                                 using (SqlCommand deleteFeedbackCmd = new SqlCommand(deleteFeedbackQuery, con))
                                 {
@@ -155,7 +139,7 @@ namespace FashionBoutiqueLogin
                                     deleteFeedbackCmd.ExecuteNonQuery();
                                 }
 
-                                // Step 5: Delete the employee from the Employee table
+                              
                                 string deleteEmployeeQuery = "DELETE FROM Employee WHERE SSN = @SSN";
                                 using (SqlCommand deleteEmployeeCmd = new SqlCommand(deleteEmployeeQuery, con))
                                 {
@@ -165,7 +149,7 @@ namespace FashionBoutiqueLogin
                                     if (rowsAffected > 0)
                                     {
                                         MessageBox.Show("Employee and related records deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        LoadEmployees(); // Refresh the employee list in the DataGridView
+                                        LoadEmployees(); 
                                     }
                                     else
                                     {
@@ -186,7 +170,7 @@ namespace FashionBoutiqueLogin
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-     
+
         // Form Load Event
         private void Employee_Load(object sender, EventArgs e)
         {
@@ -229,12 +213,13 @@ namespace FashionBoutiqueLogin
             string lastName = LASTNAMETXT.Text.Trim();
             string username = USERTXT.Text.Trim();
             string salary = SALARYTXT.Text.Trim();
+            string password = PASSTXT.Text.Trim(); // Retrieve password from textbox
             string role = ROLECOMBOBOX.SelectedItem?.ToString();
 
             // Validate input fields
             if (string.IsNullOrEmpty(ssn) || string.IsNullOrEmpty(firstName) ||
                 string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(username) ||
-                string.IsNullOrEmpty(salary) || string.IsNullOrEmpty(role))
+                string.IsNullOrEmpty(salary) || string.IsNullOrEmpty(role) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Please fill in all fields.");
                 return;
@@ -246,12 +231,13 @@ namespace FashionBoutiqueLogin
                 {
                     con.Open();
 
-                    // SQL query to update the Employee record
+                    // SQL query to update the Employee record (including Password)
                     string query = @"
                 UPDATE Employee 
                 SET FirstName = @FirstName, 
                     LastName = @LastName, 
                     Username = @Username, 
+                    Password = @Password, 
                     Salary = @Salary, 
                     Role = @Role 
                 WHERE SSN = @SSN";
@@ -263,6 +249,7 @@ namespace FashionBoutiqueLogin
                         cmd.Parameters.AddWithValue("@FirstName", firstName);
                         cmd.Parameters.AddWithValue("@LastName", lastName);
                         cmd.Parameters.AddWithValue("@Username", username);
+                        cmd.Parameters.AddWithValue("@Password", password); // Add password parameter
                         cmd.Parameters.AddWithValue("@Salary", decimal.Parse(salary));
                         cmd.Parameters.AddWithValue("@Role", role);
 
@@ -283,8 +270,8 @@ namespace FashionBoutiqueLogin
             }
             catch (SqlException sqlEx)
             {
-                // Handle specific SQL errors (e.g., unique constraint violations)
-                if (sqlEx.Number == 2627) // Unique constraint violation
+               
+                if (sqlEx.Number == 2627) 
                 {
                     MessageBox.Show("An employee with this SSN already exists.");
                 }
@@ -307,6 +294,11 @@ namespace FashionBoutiqueLogin
         }
 
         private void backgroundpanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

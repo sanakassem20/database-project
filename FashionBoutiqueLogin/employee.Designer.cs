@@ -18,7 +18,7 @@ namespace FashionBoutiqueLogin
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Employee));
             this.backgroundpanel = new System.Windows.Forms.Panel();
             this.updatebtn = new System.Windows.Forms.Button();
@@ -42,6 +42,8 @@ namespace FashionBoutiqueLogin
             this.backIconPictureBox = new System.Windows.Forms.PictureBox();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.lblSystemName = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.PASSTXT = new System.Windows.Forms.TextBox();
             this.backgroundpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV)).BeginInit();
             this.panel1.SuspendLayout();
@@ -53,6 +55,8 @@ namespace FashionBoutiqueLogin
             // backgroundpanel
             // 
             this.backgroundpanel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.backgroundpanel.Controls.Add(this.label5);
+            this.backgroundpanel.Controls.Add(this.PASSTXT);
             this.backgroundpanel.Controls.Add(this.updatebtn);
             this.backgroundpanel.Controls.Add(this.DGV);
             this.backgroundpanel.Controls.Add(this.label1);
@@ -96,14 +100,14 @@ namespace FashionBoutiqueLogin
             this.DGV.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGV.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DGV.ColumnHeadersHeight = 29;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.LightCyan;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.DarkSlateGray;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightCyan;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.DarkSlateGray;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV.GridColor = System.Drawing.Color.LightGray;
             this.DGV.Location = new System.Drawing.Point(451, 96);
             this.DGV.Name = "DGV";
@@ -152,7 +156,7 @@ namespace FashionBoutiqueLogin
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.label4.Location = new System.Drawing.Point(26, 281);
+            this.label4.Location = new System.Drawing.Point(27, 270);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 23);
             this.label4.TabIndex = 4;
@@ -186,7 +190,7 @@ namespace FashionBoutiqueLogin
             this.USERTXT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.USERTXT.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.USERTXT.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.USERTXT.Location = new System.Drawing.Point(163, 281);
+            this.USERTXT.Location = new System.Drawing.Point(163, 266);
             this.USERTXT.Name = "USERTXT";
             this.USERTXT.Size = new System.Drawing.Size(100, 27);
             this.USERTXT.TabIndex = 7;
@@ -331,6 +335,29 @@ namespace FashionBoutiqueLogin
             this.lblSystemName.TabIndex = 1;
             this.lblSystemName.Text = "GLAMVENTORY";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.label5.Location = new System.Drawing.Point(34, 310);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(100, 23);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "PASSWORD";
+            // 
+            // PASSTXT
+            // 
+            this.PASSTXT.BackColor = System.Drawing.Color.White;
+            this.PASSTXT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PASSTXT.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.PASSTXT.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.PASSTXT.Location = new System.Drawing.Point(163, 310);
+            this.PASSTXT.Name = "PASSTXT";
+            this.PASSTXT.Size = new System.Drawing.Size(100, 27);
+            this.PASSTXT.TabIndex = 18;
+            this.PASSTXT.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // Employee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -381,5 +408,7 @@ namespace FashionBoutiqueLogin
         private PictureBox logoPictureBox;
         private Label lblSystemName;
         private PictureBox pictureBox1;
+        private Label label5;
+        private TextBox PASSTXT;
     }
 }
